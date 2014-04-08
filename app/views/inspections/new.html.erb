@@ -1,0 +1,22 @@
+<b>Nova Inspeção</b>
+
+<%= nested_form_for @inspection, :html => {:multipart => true} do |f| %>
+	<br>
+  <%= f.label :description, "Descrição" %>
+  <%= f.text_field :description %>
+
+  <%= f.label :equipment_id, "Ítem de Inspeção" %>
+  <%= f.select(:equipment_id, options_for_select(@equipments, @equipment)) %>
+        
+  <%= f.label :group_id, "Grupo Da Inspeção"%>
+  <%= f.collection_select :group_id, Group.all, :id, :name %>      
+
+  <%= f.label :photo_url, "Escolha uma foto geral para a inspeção (se aplicável)" %>
+  <%= f.file_field :photo_url %>
+
+  <%= f.hidden_field 'user_id', :value => current_user.id %>
+  <%= f.hidden_field 'approved', :value => 0 %>
+  <br/>
+  <%= f.submit "Salvar" %>
+  
+<%end%>

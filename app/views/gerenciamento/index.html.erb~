@@ -1,0 +1,24 @@
+<h2>Gerenciamento do Sistema Hera</h2>
+<h5>Bem Vindo, <%= current_user.try(:name) %> (<%= current_user.try(:email) %>)!</h5>
+<hr>
+<h3>Procedimento de Inspeção</h3>
+<h4>Vistoria</h4>
+<i><%= link_to "Nova vistoria", new_group_path %></i>
+<br/><br/>
+<h4>Ítens de Inspeção</h4>
+<i><%= link_to "Novo Ítem", new_equipment_path %></i>
+<br/><br/>
+<h4>Inspeções</h4>
+<i><%= link_to "Nova Inspeção", new_inspection_path %></i>
+<br/><br/>
+<hr>
+<h3>Dados do Sistema</h3>
+<h4>Tipos de Ítens</h4>
+<i><%= link_to "Novo Tipo", new_equip_type_path %></i>
+<br/><br/>
+<h4>Prédios</h4>
+<i><%= link_to "Novo Prédio", new_building_path %></i>
+
+
+
+
