@@ -1,0 +1,6 @@
+class AddNullConstrainToGroupsVistDate < ActiveRecord::Migration
+  def change
+    change_column_null :table_name, :column_name, false
+    change_column_null :groups, :vist_date, false
+  end
+end

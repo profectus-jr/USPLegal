@@ -8,6 +8,9 @@ class Group < ActiveRecord::Base
   end
   
   def new
+  
+  @predios = Building.all.collect{|p| [p.name,p.id]}
+  @predio = 0
     
   end
   
