@@ -89,6 +89,7 @@
     <tr>Ítem de Inspeção não existe</tr>
     <% end %>
   <td><i><%= link_to "Nova Inspeção", new_inspection_path %></i>
+
 </table>
 
 

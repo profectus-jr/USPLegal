@@ -1,0 +1,4 @@
+class AddDefaultValueToGroupsVistDate < ActiveRecord::Migration
+  def change
+  end
+end

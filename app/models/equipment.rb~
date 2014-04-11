@@ -2,6 +2,8 @@ class Equipment < ActiveRecord::Base
 	has_many :inspections
 	belongs_to :equip_type
 	belongs_to :building
+  
+  accepts_nested_attributes_for :inspections, allow_destroy: true
 
 	validates :is_there, :inclusion => {:in => [true, false]}
   

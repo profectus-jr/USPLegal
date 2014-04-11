@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  
+  before_filter :authenticate_user!  
+
   def index
     @groups = Group.all
   end
@@ -10,7 +11,7 @@ class GroupsController < ApplicationController
   end
   
   def new
-    @group = Group.new
+    @group = Group.new 
     @predios = Building.all.collect{|p| [p.name,p.id]}
     @predio = 0
   end
@@ -19,7 +20,7 @@ class GroupsController < ApplicationController
     group = Group.new
     group.update_attributes(group_params)
     group.save
-    redirect_to groups_path
+    redirect_to new_equipment_path
   end
   
   def edit
@@ -34,6 +35,6 @@ class GroupsController < ApplicationController
   end
   
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :building_id, :vist_date)
   end
 end
