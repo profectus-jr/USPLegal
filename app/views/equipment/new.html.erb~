@@ -18,6 +18,6 @@
   <%= f.select(:is_there, options_for_select(@simnao, @existe)) %> 
   <br/>
   <%= f.submit "Criar" %>
-  <%= f.submit "Criar e adicionar novo item" name: "adiciona_novo"  %>
+  <%= f.submit "Criar e adicionar novo item", name: "adiciona_novo"  %>
   
 <%end%>

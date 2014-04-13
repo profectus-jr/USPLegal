@@ -1,5 +1,12 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!  
+  
+  flash[:notice] = "Informações salvas com sucesso."
+  flash[:warning] = "Preencha todos os campos obrigatórios."
+  flash[:error] = "Não foi possível salvar as informações."
+  flash[:info] = "Padrão xxx/xxx/xxx."
+  
+  
 
   def index
     @groups = Group.all
