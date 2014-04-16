@@ -67,7 +67,8 @@
               <%end%>
                 
             <td><%= link_to "Editar", edit_equipment_path(:id => equipment.id) %>
+     <td><%= link_to "Apagar", equipment_path(equipment), method: :delete, data: { confirm: 'Confirmar?'} %>
+            
         </tr>
     <% end -%>
 </table>
-<!--button_to "Adicionar equipamento", new_equipment_path, :method => "get" -->

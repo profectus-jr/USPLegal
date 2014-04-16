@@ -106,5 +106,18 @@ class EquipmentController < ApplicationController
     params.require(:equipment).permit(:name,:is_there,:equip_type_id,:building_id,:floor,:id_place)
   end
 
-
+  def destroy
+    @equipment = Equipment.find(params[:id])
+    @inspections = Inspection.where(:equipment_id => params[:id]).first
+    #@user = User.find_by(id: session[:current_user_id])
+    #@users = @users.where("kind = ? AND ", "admin")
+    if (@inspections.nil?)
+      @equipment.destroy
+      redirect_to equipment_index_path, :notice => "Item apagado com sucesso!"
+    #elsif (!@inspections.nil? && )   
+    else
+      redirect_to equipment_index_path
+    end
+  end
+  
 end
