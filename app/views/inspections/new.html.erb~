@@ -11,7 +11,7 @@
   <%= f.label :group_id, "Grupo Da Inspeção"%>
   <%= f.collection_select :group_id, Group.all, :id, :name %>      
 
-  <%= f.label :photo_url, "Escolha uma foto geral para a inspeção (se aplicável)" %>
+  <%= f.label :photo_url, "Escolha uma foto geral para a inspeção (se aplicável)", :class => "btn default-button" %>
   <%= f.file_field :photo_url %>
 
   <%= f.hidden_field 'user_id', :value => current_user.id %>

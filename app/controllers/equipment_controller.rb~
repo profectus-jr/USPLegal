@@ -111,14 +111,16 @@ class EquipmentController < ApplicationController
     @inspections = Inspection.where(:equipment_id => params[:id]).first
     #@user = User.find_by(id: session[:current_user_id])
     #@users = @users.where("kind = ? AND ", "admin")
+
     if (@inspections.nil?)
       @equipment.destroy
-      redirect_to equipment_index_path, :notice => "Item apagado com sucesso!"
-    #elsif (!@inspections.nil? && )   
+      redirect_to equipment_index_path, notice: "Ítem apagado com sucesso!"
+    elsif (!@inspections.nil? && current_user.kind == "admin")
+      @equipment.destroy 
+      redirect_to equipment_index_path, notice: "Ítem apagado com sucesso!"
     else
-      redirect_to equipment_index_path
+      redirect_to equipment_index_path, notice: "Ítem com dependencias. Nao pode ser apagado!"
     end
   end
-  
   
 end
