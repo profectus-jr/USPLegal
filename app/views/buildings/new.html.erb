@@ -1,4 +1,7 @@
+<font size="3"><b>Novo prédio</b></font>
+
 <%= nested_form_for @bld do |f| %>
+  </br>
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -6,6 +9,6 @@
   <%= f.text_field :idAtlas %>'
 
   <br/>
-  <%= f.submit "Criar" %>
+  <%= f.submit "Criar", :class => "btn default-button" %>
   
 <%end%>

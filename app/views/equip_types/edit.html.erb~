@@ -9,6 +9,6 @@ Edição de Tipo de Ítem de Inspeção
   <% end %>
   <p><%= f.link_to_add "Nova Pergunta", :checklist_items %></p>
   <br/>
-  <%= f.submit "Salvar", :class => "btn default-button" %>
+  <%= f.submit "Salvar" %>
   
 <%end%>

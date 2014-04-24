@@ -1,4 +1,8 @@
+<font size="3"> <b>Novo Ítem <i><font size="1"><%= link_to "ou Nova Inspeção", new_inspection_path, {:style=>'color:#FFFFFF;', :class => "css_class"} %></font></i> </b></font>
+
+
 <%= nested_form_for @equipment do |f| %>
+  </br>
   <%= f.label :name, "Nome" %>
   <%= f.text_field :name %>
   
@@ -17,7 +21,7 @@
   <%= f.label :is_there, "Existe" %>
   <%= f.select(:is_there, options_for_select(@simnao, @existe)) %> 
   <br/>
-  <%= f.submit "Criar" %>
-  <%= f.submit "Criar e adicionar novo item", name: "adiciona_novo"  %>
+  <%= f.submit "Criar", :class => "btn default-button" %>
+  <%= f.submit "Criar e adicionar novo item", name: "adiciona_novo", :class => "btn default-button"  %>
   
 <%end%>

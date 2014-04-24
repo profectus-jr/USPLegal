@@ -15,5 +15,5 @@
   <%  end %>
 
   <br/>
-  <%= f.submit "Salvar", :class => "btn default-button" %>
+  <%= f.submit "Salvar" %>
 <%  end %>

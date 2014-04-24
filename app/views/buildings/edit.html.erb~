@@ -6,6 +6,6 @@
   <%= f.text_field :idAtlas %>'
 
   <br/>
-  <%= f.submit "Salvar", :class => "btn default-button" %>
+  <%= f.submit "Salvar" %>
   
 <%end%>

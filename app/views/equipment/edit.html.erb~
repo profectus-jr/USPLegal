@@ -17,6 +17,6 @@
   <%= f.label :is_there, "Existe" %>
   <%= f.select(:is_there, options_for_select(@simnao, @existe)) %> 
   <br/>
-  <%= f.submit "Salvar", :class => "btn default-button" %>
+  <%= f.submit "Salvar" %>
   
 <%end%>
