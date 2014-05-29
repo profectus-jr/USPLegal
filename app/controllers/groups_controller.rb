@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   
   def new
     @group = Group.new 
-    @predios = Building.all.collect{|p| [p.name,p.id]}
+    @predios = Building.order("name").all.collect{|p| [p.name,p.id]}
     @predio = 0
   end
   
