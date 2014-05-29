@@ -17,7 +17,7 @@ class EquipmentController < ApplicationController
   
   def new
     @equipment = Equipment.new
-    @predios = Building.all.collect{|p| [p.name,p.id]}
+    @predios = Building.order("name").all.collect{|p| [p.name,p.id]}
     @predio = 0
     @tipos = EquipType.all.collect{|p| [p.kind,p.id]}
     @tipo = 0
