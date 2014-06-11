@@ -18,11 +18,12 @@ class EquipmentController < ApplicationController
   def new
     @equipment = Equipment.new
     @predios = Building.order("name").all.collect{|p| [p.name,p.id]}
-    @predio = 0
+    @predio = (params[:id_local].nil?)?(0):(params[:id_local])
     @tipos = EquipType.all.collect{|p| [p.kind,p.id]}
     @tipo = 0
     @simnao = [["Existe",true],["Não Existe",false]]
     @existe = true
+
   end
   
   def create

@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
     group = Group.new
     group.update_attributes(group_params)
     group.save
-    redirect_to new_equipment_path
+    redirect_to new_equipment_path(:id_local => group.building_id)
   end
   
   def edit

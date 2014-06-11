@@ -6,12 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(name: "Administrador do USP Legal", nusp: 1234567, cpf: "123.456.789-10", password: "password", email: "administrador@usp.legal.br", kind: "admin")
-estag = User.create(name: "Estagiario do USP Legal", nusp: 5691748, cpf: "123.456.789-10", password: "password", email: "estagiario@usp.legal.br", kind: "estag")
-admin = User.create(name: "Administrador do USP Legal", nusp: 4567890, cpf: "123.456.789-10", password: "12345678", email: "admin@usp.br", kind: "admin")
-estag1 = User.create(name: "João Paulo", nusp: 5678901, cpf: "366.272.837-12", password: "password", email: "joao.paulo@usp.legal.br", kind: "estag")
-estag2 = User.create(name: "Maria Lourdes", nusp: 4567812, cpf: "400.272.837-12", password: "password", email: "maria.lourdes@usp.legal.br", kind: "estag")
-
+User.create(name: "Administrador", nusp: 1234567, cpf: "123.456.789-10", password: "password", email: "administrador@usp.legal.br", kind: "admin")
+estag = User.create(name: "Mariana da Silva Gonçalves", nusp: 8555101, cpf: "123.456.789-10", password: "password", email: "estagiario@usp.legal.br", kind: "estag")
+admin = User.create(name: "Lucia Filgueiras", nusp: 52238, cpf: "123.456.789-10", password: "12345678", email: "admin@usp.br", kind: "admin")
 
 passeio_publico = EquipType.create(kind: "PASSEIO PÚBLICO")
 ChecklistItem.create(question: "O equipamento está conservado? ", equip_type: passeio_publico)
@@ -564,45 +561,3 @@ Building.create(idAtlas: "157", name: "ICB")
 Building.create(idAtlas: "679", name: "IQ")
 Building.create(idAtlas: "1", name: "FFLCH")
 Building.create(idAtlas: "4805", name: "CEPEUSP")
-
-
-equipPortaLabsoft = Equipment.create(is_there: true, equip_type: portas_e_aberturas, building: IOPrincipal, floor: 0, id_place:1234)
-equipPortaLanchonete = Equipment.create(is_there: true, equip_type: portas_e_aberturas, building: EPServicos, floor: 1, id_place:2345)
-equipPortaBanheiro = Equipment.create(is_there: true, equip_type: portas_e_aberturas, building: EP_ENERQ, floor: 3, id_place:3456)
-equipLavatorio = Equipment.create(is_there: true, equip_type: lavatorio, building: EP_ENERQ, floor: 1, id_place:4312)
-equipExtra = Equipment.create(is_there: true, equip_type: copa_e_cozinha, building: EP_ENERQ, floor: 2, id_place:1111)
-
-
-
-inspPortaLabsoft = Inspection.create(photo_url: "http://4.bp.blogspot.com/_xCWYfvsLCZw/S-a9ml_pzSI/AAAAAAAACCY/Jj8W8KGp234/s400/PortaSala_01.jpg", user: estag1, equipment: equipPortaLabsoft, user: estag1, description: "Isto eh uma descricao", approved: 0)
-inspPortaLanchonete = Inspection.create(photo_url: "http://farm4.staticflickr.com/3266/2579525072_f0c9908c89_z.jpg", user: estag1, equipment: equipPortaLanchonete, user: estag1, description: "Isto eh uma descricao", approved: 0)
-inspPortaBanheiro = Inspection.create(photo_url: "http://farm4.staticflickr.com/3266/2579525072_f0c9908c89_z.jpg", user: estag2, equipment: equipPortaBanheiro, user: estag2, description: "Isto eh uma descricao", approved: 0)
-inspLavatorio = Inspection.create(photo_url: "http://images03.olx.com.br/ui/20/34/31/1335986470_367213331_1-Lavatorio-em-Marmores-jundiai-Retiro.jpg", user: estag2, equipment: equipLavatorio, user: estag2, description: "Isto eh uma descricao", approved: 0)
-inspLavatorio2 = Inspection.create(photo_url: "http://images03.olx.com.br/ui/20/34/31/1335986470_367213331_1-Lavatorio-em-Marmores-jundiai-Retiro.jpg", user: estag1, equipment: equipLavatorio, user: estag1, description: "Isto eh uma descricao", approved: 0)
-inspLavatorio3 = Inspection.create(photo_url: "http://images03.olx.com.br/ui/20/34/31/1335986470_367213331_1-Lavatorio-em-Marmores-jundiai-Retiro.jpg", user: estag1, equipment: equipLavatorio, user: estag1, description: "Isto eh uma descricao", approved: 1, sent: 1)
-
-
-Answer.create(is_ok: 0, inspection: inspPortaLabsoft, checklist_item: consPorta)
-Answer.create(is_ok: 1, inspection: inspPortaLabsoft, checklist_item: pergPorta1)
-Answer.create(is_ok: 1, inspection: inspPortaLabsoft, checklist_item: pergPorta2)
-Answer.create(is_ok: 2, inspection: inspPortaLabsoft, checklist_item: pergPorta3)
-
-Answer.create(is_ok: 1, inspection: inspPortaLanchonete, checklist_item: consPorta)
-Answer.create(is_ok: 1, inspection: inspPortaLanchonete, checklist_item: pergPorta1)
-Answer.create(is_ok: 2, inspection: inspPortaLanchonete, checklist_item: pergPorta2)
-Answer.create(is_ok: 0, inspection: inspPortaLanchonete, checklist_item: pergPorta3)
-
-Answer.create(is_ok: 0, inspection: inspPortaBanheiro, checklist_item: consPorta)
-Answer.create(is_ok: 1, inspection: inspPortaBanheiro, checklist_item: pergPorta1)
-Answer.create(is_ok: 1, inspection: inspPortaBanheiro, checklist_item: pergPorta2)
-Answer.create(is_ok: 0, inspection: inspPortaBanheiro, checklist_item: pergPorta3)
-
-
-Answer.create(is_ok: 1, inspection: inspLavatorio, checklist_item: consLav)
-Answer.create(is_ok: 0, inspection: inspLavatorio, checklist_item: pergLav1)
-
-Answer.create(is_ok: 0, inspection: inspLavatorio2, checklist_item: consLav)
-Answer.create(is_ok: 1, inspection: inspLavatorio2, checklist_item: pergLav1)
-
-Answer.create(is_ok: 1, inspection: inspLavatorio3, checklist_item: consLav)
-Answer.create(is_ok: 1, inspection: inspLavatorio3, checklist_item: pergLav1)
