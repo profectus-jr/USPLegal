@@ -6,6 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.create(name: "Administrador", nusp: 1234567, cpf: "123.456.789-10", password: "password", email: "admin@usplegal.br", kind: "admin")
+estag = User.create(name: "Mariana da Silva Gonçalves", nusp: 8555101, cpf: "123.456.789-10", password: "password", email: "estag@usplegal.br", kind: "estag")
+admin = User.create(name: "Lucia Filgueiras", nusp: 52238, cpf: "123.456.789-10", password: "12345678", email: "admin@usplegal.br", kind: "admin")
+
 passeio_publico = EquipType.create(kind: "PASSEIO PÚBLICO")
 ChecklistItem.create(question: "O equipamento está conservado? ", equip_type: passeio_publico)
 ChecklistItem.create(question: "A faixa livre possui largura livre mínima de 1,20 m?", equip_type: passeio_publico)

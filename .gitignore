@@ -18,3 +18,5 @@ public/uploads
 public/uploads/inspection
 public/uploads/tmp
 public/system/uploads/photos
+config/database.yml
+db/seeds.rb
