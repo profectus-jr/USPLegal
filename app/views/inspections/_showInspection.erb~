@@ -16,8 +16,8 @@
         <td><%= @inspection.equipment.building.name%></td>
     </tr>
     <tr>
-        <th>Data da Inspeção</th>
-        <td><%= @inspection.created_at%></td>
+        <th>Data da Inspeçãoooooo</th>
+        <td><%= @inspection.group.vist_date%></td>
     </tr>
     <tr>
         <th>Inspetor</th>
@@ -89,7 +89,6 @@
     <tr>Ítem de Inspeção não existe</tr>
     <% end %>
   <td><i><%= link_to "Nova Inspeção", new_inspection_path %></i>
-
 </table>
 
 

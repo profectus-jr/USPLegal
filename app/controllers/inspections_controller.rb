@@ -108,10 +108,13 @@ class InspectionsController < ApplicationController
 	def index
 		@equip_types = EquipType.order("kind").all
 		@users = User.order("name").where(kind: "estag")
+		@groups = Group.all
 		@buildings = Building.order("name").all
 
 		@inspections = Inspection.where(approved: 0).order("created_at DESC")
 		@inspections = @inspections.where("user_id = ?", params[:user_id]) unless params[:user_id].blank?
+		@inspections = @inspections.where("group_id = ?", params[:group_id]) unless params[:group_id].blank?
+		
 		@inspections = @inspections.joins(:equipment).where(equipment: {equip_type_id: params[:equip_type_id]}) unless params[:equip_type_id].blank?
 		@inspections = @inspections.where("inspections.created_at > ?", params[:data1]) unless params[:data1].blank?
 		@inspections = @inspections.where("inspections.created_at < ?", params[:data2]) unless params[:data2].blank?
@@ -123,9 +126,14 @@ class InspectionsController < ApplicationController
 		@equip_types = EquipType.order("kind").all
 		@users = User.order("name").where(kind: "estag")
 		@buildings = Building.order("name").all
+		@groups = Group.all
 
 		@inspections = Inspection.where("approved <> 0").order("created_at DESC")
 		@inspections = @inspections.where("user_id = ?", params[:user_id]) unless params[:user_id].blank?
+		
+		@inspections = @inspections.where("group_id = ?", params[:group_id]) unless params[:group_id].blank?
+		
+		
 		@inspections = @inspections.joins(:equipment).where(equipment: {equip_type_id: params[:equip_type_id]}) unless params[:equip_type_id].blank?
 		@inspections = @inspections.where("inspections.created_at > ?", params[:data1]) unless params[:data1].blank?
 		@inspections = @inspections.where("inspections.created_at < ?", params[:data2]) unless params[:data2].blank?
