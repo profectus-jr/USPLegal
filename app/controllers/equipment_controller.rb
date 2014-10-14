@@ -14,18 +14,18 @@ class EquipmentController < ApplicationController
         end
       end
   end
-  
+
   def new
     @equipment = Equipment.new
     @predios = Building.order("name").all.collect{|p| [p.name,p.id]}
     @predio = (params[:id_local].nil?)?(0):(params[:id_local])
     @tipos = EquipType.all.collect{|p| [p.kind,p.id]}
     @tipo = 0
-    @simnao = [["Existe",true],["Não Existe",false]]
+    @simnao = [["Existe",true],["Nao Existe",false]]
     @existe = true
 
   end
-  
+
   def create
     equipment = Equipment.new
     equipment.update_attributes(equipment_params)
@@ -37,17 +37,17 @@ class EquipmentController < ApplicationController
       redirect_to new_inspection_path
     end
   end
-  
+
   def edit
     @equipment = Equipment.find_or_create_by_id(params[:id])
     @predios = Building.all.collect{|p| [p.name,p.id]}
     @predio = @equipment.building.id
     @tipos = EquipType.all.collect{|p| [p.kind,p.id]}
     @tipo = 0
-    @simnao = [["Existe",true],["Não Existe",false]]
+    @simnao = [["Existe",true],["Nao Existe",false]]
     @existe = @equipment.is_there
   end
-  
+
   def update
     equipment = Equipment.find params[:id]
     equipment.update_attributes(equipment_params)
@@ -102,7 +102,7 @@ class EquipmentController < ApplicationController
 
     end
   end
-  
+
   def equipment_params
     params.require(:equipment).permit(:name,:is_there,:equip_type_id,:building_id,:floor,:id_place)
   end
@@ -115,13 +115,13 @@ class EquipmentController < ApplicationController
 
     if (@inspections.nil?)
       @equipment.destroy
-      redirect_to equipment_index_path, notice: "Ítem apagado com sucesso!"
+      redirect_to equipment_index_path, notice: "Item apagado com sucesso!"
     elsif (!@inspections.nil? && current_user.kind == "admin")
-      @equipment.destroy 
-      redirect_to equipment_index_path, notice: "Ítem apagado com sucesso!"
+      @equipment.destroy
+      redirect_to equipment_index_path, notice: "Item apagado com sucesso!"
     else
-      redirect_to equipment_index_path, notice: "Ítem com dependencias. Não pode ser apagado!"
+      redirect_to equipment_index_path, notice: "Item com dependencias. Nao pode ser apagado!"
     end
   end
-  
+
 end
