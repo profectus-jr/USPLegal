@@ -20,7 +20,7 @@ test:
   database: hera_test
   pool: 5
   username: root
-  password: 2
+  password: 3
 
 production:
   adapter: mysql2
