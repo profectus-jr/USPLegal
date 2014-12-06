@@ -1,3 +1,11 @@
+<style>
+.img-container
+{
+	width:		300px;
+	height:		200px; 
+}
+</style>
+
 <table class="table">
     <tr>
         <th>ID</th>
@@ -81,7 +89,9 @@
                   <% end %>   
                   <br/>
            <% answer.upload.each do |upload| %>
-            <%= image_tag upload.photo.url %>
+			<div class="img-container"><center>
+              <%= image_tag upload.photo.url, size: "100%" %>
+			</center></div>
           <% end %>
           </td>
         </tr>
