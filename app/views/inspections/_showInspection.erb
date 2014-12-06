@@ -1,8 +1,17 @@
 <style>
 .img-container
 {
+	padding:		1px;
+	border:			thin solid black; 
 	width:		300px;
 	height:		200px; 
+}
+
+.image-details
+{
+
+	max-width:		300px;
+	max-height:		200px;  
 }
 </style>
 
@@ -90,8 +99,9 @@
                   <br/>
            <% answer.upload.each do |upload| %>
 			<div class="img-container"><center>
-              <%= image_tag upload.photo.url, size: "100%" %>
+              <%= image_tag upload.photo.url, class: "image-details" %>
 			</center></div>
+			<br/>
           <% end %>
           </td>
         </tr>
