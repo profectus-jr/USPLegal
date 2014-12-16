@@ -45,7 +45,7 @@ class InspectionsController < ApplicationController
   def edit
     @inspection = Inspection.find(params[:id])
     @questions = @inspection.equipment.equip_type.checklist_items.collect{|p| [p.id, p.question] }
-    @answertypes = [["Sim",0],["Não",1], ["Não se Aplica",2]]
+    @answertypes = [["Sim",0],["Nao",1], ["Nao se Aplica",2]]
     
     @answer_data = Answer.where(inspection_id: params[:id])
     
