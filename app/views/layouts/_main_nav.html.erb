@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<% if user_signed_in? -%>	
+<% if user_signed_in? -%>
 <div class="row-fluid">
     <div class="navbar">
       <div class="navbar-inner">
@@ -21,7 +21,6 @@
           <li class="<%= "active" if @status == "all" %>">
             <%= link_to "Ítem de Inspeção", equipment_index_path%>
           </li>
-          
           <li class="<%= "active" if @status == "Não Analisado" %>">
             <%= link_to "Inspeções Pendentes", inspections_path%>
           </li>
@@ -37,7 +36,6 @@
           <li class="<%= "active" if @status == "Aceito" %>">
             <%= link_to "Usuários", user_index_path%>
           </li>
-          
           <li>
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
           </li>
