@@ -14,7 +14,7 @@ class EquipmentController < ApplicationController
         end
       end
   end
-  
+
   def new
     @equipment = Equipment.new
     @predios = Building.order("name").all.collect{|p| [p.name,p.id]}
@@ -25,8 +25,6 @@ class EquipmentController < ApplicationController
     @existe = true
   end
 
-
-  
   def create
     equipment = Equipment.new
     equipment.update_attributes(equipment_params)
@@ -38,7 +36,7 @@ class EquipmentController < ApplicationController
       redirect_to new_inspection_path
     end
   end
-  
+
   def edit
     @equipment = Equipment.find_or_create_by_id(params[:id])
     @predios = Building.all.collect{|p| [p.name,p.id]}
@@ -48,7 +46,7 @@ class EquipmentController < ApplicationController
     @simnao = [["Existe",true],["Nao Existe",false]]
     @existe = @equipment.is_there
   end
-  
+
   def update
     equipment = Equipment.find params[:id]
     equipment.update_attributes(equipment_params)
@@ -103,7 +101,7 @@ class EquipmentController < ApplicationController
 
     end
   end
-  
+
   def equipment_params
     params.require(:equipment).permit(:name,:is_there,:equip_type_id,:building_id,:floor,:id_place)
   end
@@ -118,11 +116,11 @@ class EquipmentController < ApplicationController
       @equipment.destroy
       redirect_to equipment_index_path, notice: "Item apagado com sucesso!"
     elsif (!@inspections.nil? && current_user.kind == "admin")
-      @equipment.destroy 
+      @equipment.destroy
       redirect_to equipment_index_path, notice: "Item apagado com sucesso!"
     else
       redirect_to equipment_index_path, notice: "Item com dependencias. Nao pode ser apagado!"
     end
   end
-  
+
 end
