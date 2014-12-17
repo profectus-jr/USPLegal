@@ -23,7 +23,7 @@
     <%= select_tag(:etype, options_for_select(equip_type_array)) %>
   <br>Pergunta:
     <%= text_field_tag :texto_da_pergunta, '', :size => 100 %>
-    <%= submit_tag "Criar pergunta", :onclick => "return confirm('Certeza que deseja criar a pergunta?')" %>
+    <%= submit_tag "Criar pergunta", :onclick => "return confirm('Certeza que deseja criar a pergunta?')", :class => "btn default-button" %>
     <% end %>
   </p>
 

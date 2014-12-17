@@ -15,8 +15,7 @@
   Estado de Conservação
     <%= select_tag(:conserved_id, options_for_select([['',''], ['Conservado', 0], ['Não Conservado', 1]])) %>
 
-
-    <%= submit_tag("Aplicar Filtros")%>
+    <%= submit_tag("Aplicar Filtros", :class => "btn default-button")%>
     <% end %>
   </p>
 

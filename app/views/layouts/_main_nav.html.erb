@@ -1,10 +1,10 @@
 <div class="navbar navbar-default main-nav " role="navigation">
   <div class="navbar-inner mainnav">
     <div class="container-fluid">
-      <%= image_tag "header_logo.png", class: "logo" %>
-      <a href="<%= root_path %>" class="brand">
+      <%= image_tag "header_logo1.png", class: "logo" %>
+      <!--a href="<%= root_path %>" class="brand">
         legal
-      </a>
+      </a-->
     </div>
   </div>
 </div>
@@ -37,7 +37,7 @@
             <%= link_to "Usuários", user_index_path%>
           </li>
           <li>
-            <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+            <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
           </li>
         </ul>
       </div>

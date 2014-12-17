@@ -3,19 +3,19 @@
 
   <%= form_tag(user_index_path, method: "get") do %>
 
-  <p>
+   Nome:
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
+    <%= submit_tag "Aplicar Filtro", :name => nil, :class => "btn default-button" %>
+
 <% end %>
 
   <%= form_tag(user_index_path, method: "get") do %>
-  <p> Tipo:
+ Tipo:
     <%= select_tag(:user_type, options_for_select([['',0], ['Administrador', 'admin'], ['Estagiário', 'estag']])) %>
-  </p>
 
 
-    <%= submit_tag("Aplicar Filtros")%>
+
+    <%= submit_tag("Aplicar Filtro", :class => "btn default-button")%>
     <% end %>
 
 </div>

@@ -20,9 +20,9 @@
     equip_type_array.unshift(['',''])%>
     <%= select_tag(:equip_type_id, options_for_select(equip_type_array)) %>
 
-
+    <%= submit_tag("Aplicar Filtros", :class => "btn default-button")%>
   </p>
-    <%= submit_tag("Aplicar Filtros")%>
+
     <% end %>
 
 </div>
