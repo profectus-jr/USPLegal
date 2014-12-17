@@ -46,8 +46,14 @@ body {
 .navbar {
   *position: relative;
   *z-index: 2;
-  margin-bottom: 0px;
+  margin-bottom: -1px;
   overflow: visible; }
+
+.search{
+    margin: 0px;
+    padding: 50px !important;
+    display:inline;
+}
 
 .span6.map {
   height: 300px;

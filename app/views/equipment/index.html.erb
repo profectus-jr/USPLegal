@@ -52,7 +52,7 @@
                   if (equipment.inspections.last.answers.first.is_ok == 2)
                   %><p class="text-muted">Não se aplica</p><% end
                 %></td>
-    
+
                 <td>
                   <%= link_to "Visualizar", equipment_path(equipment)  %>
                 </td>
@@ -65,10 +65,10 @@
                 <td> Não há inspeções</td>
                 <td>Sem Visualização</td>
               <%end%>
-                
+
             <td><%= link_to "Editar", edit_equipment_path(:id => equipment.id) %>
             <td><%= link_to "Apagar", equipment_path(equipment), method: :delete, data: { confirm: 'Confirmar?'} %>
-            
+
         </tr>
     <% end -%>
 </table>
