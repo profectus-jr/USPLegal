@@ -11,7 +11,6 @@
   <% if current_user.kind == "admin" %>
     <%= f.label :kind, "Tipo de Usuário" %>
     <%= f.select(:kind, options_for_select(@roles, @role)) %>
-  
   <%  end %>
 
   <br/>

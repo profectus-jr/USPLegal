@@ -33,12 +33,13 @@
           <li class="<%= "active" if @status == "all" %>">
             <%= link_to "Prédios", buildings_path%>
           </li>
-          <!--li class="<%= "active" if @status == "Aceito" %>">
-            <%= link_to "Usuários", user_index_path%>
-          </li-->
+          <li class="<%= "active" if @status == "Aceito" %>">
+            <%= link_to "Meus dados", user_index_path%>
+          </li>
           <li>
             <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
           </li>
+          <li><h6>Bem Vindo, <%= current_user.try(:name) %></h6></li>
         </ul>
       </div>
     </div>
