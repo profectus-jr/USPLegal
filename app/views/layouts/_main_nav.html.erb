@@ -33,9 +33,9 @@
           <li class="<%= "active" if @status == "all" %>">
             <%= link_to "Prédios", buildings_path%>
           </li>
-          <li class="<%= "active" if @status == "Aceito" %>">
+          <!--li class="<%= "active" if @status == "Aceito" %>">
             <%= link_to "Usuários", user_index_path%>
-          </li>
+          </li-->
           <li>
             <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
           </li>
