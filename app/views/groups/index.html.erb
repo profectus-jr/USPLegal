@@ -1,3 +1,4 @@
+</br>
 Lista de Vistorias
 
 <td><i><%= link_to "(Adicionar Vistoria)", new_group_path %></i>
@@ -13,11 +14,11 @@ Lista de Vistorias
             <td>
                <%= link_to group.name, group %>
             </td>
-                   
+
             <td>
                <%= group.building.name %>
-            </td>            
-        
+            </td>
+
             <td><%= link_to "Editar", edit_group_path(:id => group.id) %>
         </tr>
     <% end -%>
