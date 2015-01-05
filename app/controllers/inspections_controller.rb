@@ -38,8 +38,15 @@ class InspectionsController < ApplicationController
   def create
     inspection = Inspection.new
     inspection.update_attributes(inspection_params)
+    identificacao = inspection.equipment_id
+    condicao = Equipment.find(identificacao)
     inspection.save
-    redirect_to edit_inspection_path(inspection.id)
+
+    if condicao.is_there
+        redirect_to edit_inspection_path(inspection.id)
+    else
+        redirect_to root_path
+    end
   end
 
   def edit
@@ -48,7 +55,6 @@ class InspectionsController < ApplicationController
     @answertypes = [["Sim",0],["Nao",1], ["Nao se Aplica",2]]
     @answer_data = Answer.where(inspection_id: params[:id])
     @answer_test = @answer_data.where(checklist_item_id: 29)
-
   end
 
   def update

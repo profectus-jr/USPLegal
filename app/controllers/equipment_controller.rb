@@ -31,9 +31,9 @@ class EquipmentController < ApplicationController
     equipment.save
 
     if params[:adiciona_novo]
-      redirect_to new_equipment_path
+        redirect_to new_equipment_path
     else
-      redirect_to new_inspection_path
+        redirect_to new_inspection_path
     end
   end
 
