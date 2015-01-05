@@ -1,33 +1,33 @@
 class InspectionsController < ApplicationController
 	before_filter :authenticate_user!
 
-	def show
-		@inspection = Inspection.find(params[:id]);
-		@answers = Answer.where(inspection_id: params[:id])
-    prepared_url = @inspection.photo_url.to_s
-    prepared_url.slice!(0)
-    @inspection_url = root_url + prepared_url
-	end
-
-	def validate
-    if (current_user.kind == "admin")
-      @inspection = Inspection.find(params[:id])
-      @inspection.update_column :approved, 1
-      redirect_to action: :show, id: @inspection.id
-    else
-      redirect_to action: :show, id: @inspection.id
+    def show
+        @inspection = Inspection.find(params[:id]);
+        @answers = Answer.where(inspection_id: params[:id])
+        prepared_url = @inspection.photo_url.to_s
+        prepared_url.slice!(0)
+        @inspection_url = root_url + prepared_url
     end
-	end
 
-	def disapprove
-    if (current_user.kind == "admin")
-      @inspection = Inspection.find(params[:id])
-      @inspection.update_column :approved, 2
-      redirect_to action: :show, id: @inspection.id
-    else
-      redirect_to action: :show, id: @inspection.id
+    def validate
+        if (current_user.kind == "admin")
+            @inspection = Inspection.find(params[:id])
+            @inspection.update_column :approved, 1
+            redirect_to action: :show, id: @inspection.id
+        else
+            redirect_to action: :show, id: @inspection.id
+        end
     end
-	end
+
+    def disapprove
+        if (current_user.kind == "admin")
+            @inspection = Inspection.find(params[:id])
+            @inspection.update_column :approved, 2
+            redirect_to action: :show, id: @inspection.id
+        else
+            redirect_to action: :show, id: @inspection.id
+        end
+    end
 
   def new
     @inspection = Inspection.new
