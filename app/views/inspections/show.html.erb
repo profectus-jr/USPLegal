@@ -1,8 +1,25 @@
-<h2>Visualização de Inspeção</h2>
+<style>
+.imgi-container{
+    padding:        1px;
+    width:      650px;
+    height:     550px;
+}
+
+.imagi-details{
+    max-width:      650px;
+    max-height:     550px;
+}
+</style>
+
+</br>
+<h3>Visualização de Inspeção</h3>
 
 <%= render :partial => 'showInspection' %>
 
 <br>
-<div class="container">
-  <img src="<%=  @inspection_url %>" class="img-rounded">
+<div class="container imgi-container">
+  <img src="<%=  @inspection_url %>" class="imagi-details">
 </div>
+
+<%= link_to "Nova Inspeção", new_inspection_path %>
+

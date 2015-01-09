@@ -53,7 +53,9 @@
 
             </td>
             <td>
-              <%= link_to "Checklist", edit_inspection_path(:id => insp.id) %>
+                <% if (insp.equipment.is_there)  %>
+                    <%= link_to "Checklist", edit_inspection_path(:id => insp.id) %>
+                <% end %>
             </td>
         </tr>
     <% end -%>

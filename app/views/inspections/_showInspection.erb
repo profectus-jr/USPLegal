@@ -3,16 +3,15 @@
 .img-container
 {
 	padding:		1px;
-	border:			thin solid black; 
 	width:		300px;
-	height:		200px; 
+	height:		200px;
 }
 
 .image-details
 {
 
 	max-width:		300px;
-	max-height:		200px;  
+	max-height:		200px;
 }
 </style>
 
@@ -74,7 +73,7 @@
             <td>
                 <% if !answer.checklist_item.nil? %>
                   <%= answer.checklist_item.question %>
-                  <br/>                                 
+                  <br/>
                 <%  else %>
                   !PERGUNTA REMOVIDA!
                 <% end %>
@@ -96,7 +95,7 @@
                     <%= answer.comment%>
                   <% else %>
                     Nenhum comentário.
-                  <% end %>   
+                  <% end %>
                   <br/>
            <% answer.upload.each do |upload| %>
 			<div class="img-container"><center>
@@ -109,7 +108,7 @@
     <% end else %>
     <tr>Ítem de Inspeção não existe</tr>
     <% end %>
-  <td><i><%= link_to "Nova Inspeção", new_inspection_path %></i>
+  <!--td><i><%= link_to "Nova Inspeção", new_inspection_path %></i-->
 </table>
 
 
@@ -124,8 +123,8 @@
       <td>
         <%= link_to 'Reprovar', { action: :disapprove, id: @inspection.id },  method: :disapprove,  :onclick => "return confirm('Certeza que deseja reprovar a inspeção?')", class: "btn btn-danger" %>
       </td>
-      <% else %>
-        Apenas Adminstradores podem aprovar ou reprovar inspeções!
+      <!--% else %>
+        Apenas Adminstradores podem aprovar ou reprovar inspeções!-->
       <% end %>
       <% end %>
 
