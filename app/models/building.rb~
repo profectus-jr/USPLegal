@@ -1,6 +1,0 @@
-class Building < ActiveRecord::Base
-	has_many :equipments
-	has_many :groups
-
-	validates :idAtlas, uniqueness: true, presence: true
-end
