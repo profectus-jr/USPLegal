@@ -20,3 +20,6 @@
 /public/system/uploads/photos
 /config/database.yml
 /db/seeds.rb
+
+#Gedit Temporary Files
+*~
