@@ -1,4 +1,3 @@
-
 <style>
 .img-container
 {
@@ -34,7 +33,11 @@
     </tr>
     <tr>
         <th>Data da Inspeção</th>
-        <td><%= @inspection.group.vist_date%></td>
+        <td>
+	<% if (@inspection.group != nil) %> 
+		<%= @inspection.group.vist_date %>
+	<% end %>
+	</td>
     </tr>
     <tr>
         <th>Inspetor</th>
