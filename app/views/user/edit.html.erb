@@ -1,6 +1,6 @@
 <% if (current_user.kind == "admin") || (current_user == @user) %>
 	<%= nested_form_for @user do |f| %>
-		<%= f.label :name %>
+		<%= f.label :name, "Nome" %>
 		<%= f.text_field :name %>
 
 		<%= f.label :nusp, "Número USP" %>
