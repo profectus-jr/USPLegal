@@ -1,21 +1,6 @@
 
-<style>
-.img-container
-{
-	padding:		1px;
-	width:		300px;
-	height:		200px;
-}
 
-.image-details
-{
-
-	max-width:		300px;
-	max-height:		200px;
-}
-</style>
-
-<table class="table">
+<table class="table">    
     <tr>
         <th>ID</th>
         <td><%= @inspection.id%></td>
@@ -25,7 +10,7 @@
         <td><%= @inspection.group.try(:name)%></td>
     </tr>
     <tr>
-        <th>Tipo do Ítem</th>
+        <th>Tipo de Equipamento</th>
         <td><%= @inspection.equipment.equip_type.kind%></td>
     </tr>
     <tr>
@@ -33,8 +18,12 @@
         <td><%= @inspection.equipment.building.name%></td>
     </tr>
     <tr>
-        <th>Data da Inspeção</th>
-        <td><%= @inspection.group.vist_date%></td>
+        <th>Data da Inspeção</th>	
+        <td>
+	<% if (insp.group != nil) %> 
+		<%= @inspection.group.vist_date %>
+	<% end %>
+	</td>
     </tr>
     <tr>
         <th>Inspetor</th>
@@ -46,34 +35,28 @@
     </tr>
     <tr>
         <th>Aprovado?</th>
-        <td> <% if (@inspection.sent ==1)
-                    %><p class="text-muted">Enviado</p><% else
-                if (@inspection.approved == 0)
+        <td> <% if (@inspection.approved == 0)
                     %><p class="text-muted">Pendente</p><% end
                 if (@inspection.approved == 1)
                     %><p class="text-muted">Aprovado</p><% end
                 if (@inspection.approved == 2)
                     %><p class="text-muted">Reprovado</p><% end
+                if (@inspection.approved == 3)
+                    %><p class="text-muted">Enviado</p><%
                 end
                 %></td>
     </tr>
 </table>
 
-
-
 <h3>Checklist</h3>
 
 <% if (@inspection.equipment.is_there)  %>
 <table class="table">
-    <% if @answers.size == 0 %>
-      Nenhuma pergunta foi respondida.
-    <% end %>
     <% @answers.each do |answer| %>
         <tr>
             <td>
                 <% if !answer.checklist_item.nil? %>
                   <%= answer.checklist_item.question %>
-                  <br/>
                 <%  else %>
                   !PERGUNTA REMOVIDA!
                 <% end %>
@@ -89,45 +72,25 @@
                 %>
             </td>
         </tr>
-        <tr>
-          <td colspan="2">
-           <% if !answer.comment.nil? %>
-                    <%= answer.comment%>
-                  <% else %>
-                    Nenhum comentário.
-                  <% end %>
-                  <br/>
-           <% answer.upload.each do |upload| %>
-			<div class="img-container"><center>
-              <%= image_tag upload.photo.url, class: "image-details" %>
-			</center></div>
-			<br/>
-          <% end %>
-          </td>
-        </tr>
     <% end else %>
-    <tr>Ítem de Inspeção não existe</tr>
+    <tr>Equipamento não existe</tr>
     <% end %>
-  <!--td><i><%= link_to "Nova Inspeção", new_inspection_path %></i-->
 </table>
-
 
 <div class="container">
   <table>
     <tr>
-      <% if (@inspection.approved == 0) then %>
-      <% if (current_user.kind == "admin") %>
-      <td>
-        <%= link_to 'Aprovar', { action: :validate, id: @inspection.id },  method: :validate,  :onclick => "return confirm('Certeza que deseja aprovar a inspeção?')", class: "btn btn-success"%>
-      </td>
-      <td>
-        <%= link_to 'Reprovar', { action: :disapprove, id: @inspection.id },  method: :disapprove,  :onclick => "return confirm('Certeza que deseja reprovar a inspeção?')", class: "btn btn-danger" %>
-      </td>
-      <!--% else %>
-        Apenas Adminstradores podem aprovar ou reprovar inspeções!-->
+        <% if (@inspection.approved == 0) then %>
+        <% if (current_user.kind == "admin") %>
+       <td>
+            <%= link_to 'Aprovar', { action: :validate, id: @inspection.id },  method: :validate,  :onclick => "return confirm('Certeza que deseja aprovar a inspeção?')", class: "btn btn-success"%></td>
+      <td><%= link_to 'Reprovar', { action: :disapprove, id: @inspection.id },  method: :disapprove,  :onclick => "return confirm('Certeza que deseja reprovar a inspeção?')", class: "btn btn-danger" %></td>
+      <% else %>
+        Apenas Adminstradores podem aprovar ou reprovar inspeções!
       <% end %>
       <% end %>
 
     </tr>
   </table>
 </div>
+

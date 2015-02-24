@@ -26,11 +26,7 @@
                <%= insp.equipment.building.name %>
             </td>
             <td>
-               <% if (insp.group != nil) %> 
-	       	<%= insp.group.vist_date %> 
-	       <% else %>
-		Sem Data Definida
-	       <% end %>
+               <%= insp.group.vist_date %>
             </td>
             <td>
                 <%= insp.user.name %>

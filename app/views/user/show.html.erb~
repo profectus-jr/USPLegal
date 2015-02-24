@@ -1,6 +1,6 @@
-<% if (current_user.kind == "admin") || (current_user == @user) %>
-
 <h2>Visualização de Usuário</h2>
+
+
 <table class="table">
     <tr>
         <th>ID</th>
@@ -27,7 +27,3 @@
         <td><%= @user.email %></td>
     </tr>
 </table>
-
-<% else %>
-	Você não tem permissões suficientes para visualizar as informações deste usuário!
-<% end %>

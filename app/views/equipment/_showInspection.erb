@@ -18,8 +18,12 @@
         <td><%= @inspection.equipment.building.name%></td>
     </tr>
     <tr>
-        <th>Data da Inspeçãoooooo</th>
-        <td><%= @inspection.group.vist_date %></td>
+        <th>Data da Inspeção</th>	
+        <td>
+	<% if (@inspection.group != nil) %> 
+		<%= @inspection.group.vist_date %>
+	<% end %>
+	</td>
     </tr>
     <tr>
         <th>Inspetor</th>

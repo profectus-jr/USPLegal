@@ -16,7 +16,11 @@ Lista de Vistorias
             </td>
 
             <td>
-               <%= group.building.name %>
+		<% if (group.building != nil) %>
+              	 <%= group.building.name %>
+		<% else %>
+		 Não vinculada
+		<% end %>
             </td>
 
             <td><%= link_to "Editar", edit_group_path(:id => group.id) %>

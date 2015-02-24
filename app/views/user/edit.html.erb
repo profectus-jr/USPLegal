@@ -1,18 +1,22 @@
-<%= nested_form_for @user do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<% if (current_user.kind == "admin") || (current_user == @user) %>
+	<%= nested_form_for @user do |f| %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
 
-  <%= f.label :nusp, "Número USP" %>
-  <%= f.text_field :nusp %>
+		<%= f.label :nusp, "Número USP" %>
+		<%= f.text_field :nusp %>
 
-  <%= f.label :cpf, "CPF" %>
-  <%= f.text_field :cpf %>
+		<%= f.label :cpf, "CPF" %>
+		<%= f.text_field :cpf %>
 
-  <% if current_user.kind == "admin" %>
-    <%= f.label :kind, "Tipo de Usuário" %>
-    <%= f.select(:kind, options_for_select(@roles, @role)) %>
-  <%  end %>
+		<% if current_user.kind == "admin" %>
+			<%= f.label :kind, "Tipo de Usuário" %>
+			<%= f.select(:kind, options_for_select(@roles, @role)) %>
+		<% end %>
 
-  <br/>
-  <%= f.submit "Salvar", :class => "btn default-button" %>
-<%  end %>
+  	<br/>
+  	<%= f.submit "Salvar", :class => "btn default-button" %>
+	<% end %>
+<% else %>
+	Impossível acessar informação deste usuário! Você não tem permissões.
+<% end %>
