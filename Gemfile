@@ -65,3 +65,4 @@ end
 gem 'nested_form'
 gem 'devise'
 gem 'paperclip'
+gem 'fancybox2-rails'

@@ -101,15 +101,17 @@
                   <% end %>
                   <br/>
            <% answer.upload.each do |upload| %>
-			<div class="img-container"><center>
-              <%= image_tag upload.photo.url, class: "image-details" %>
-			</center></div>
-			<br/>
+		<a class="fancybox" rel="group" href="<%= upload.photo.url %>">
+			<div class="img-container">
+				<img src="<%= upload.photo.url %>" alt="" />
+			</div>
+		</a>
+		<br/>
           <% end %>
           </td>
         </tr>
     <% end else %>
-    <tr>Ítem de Inspeção não existe</tr>
+    <tr>Ítem de Inspeção Não Existe</tr>
     <% end %>
   <!--td><i><%= link_to "Nova Inspeção", new_inspection_path %></i-->
 </table>

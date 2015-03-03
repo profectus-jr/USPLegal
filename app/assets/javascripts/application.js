@@ -16,5 +16,10 @@
 //= require_tree .
 //= require bootstrap
 //= require jquery_nested_form
+//= require fancybox
+
+$(document).ready(function () {
+	$(".fancybox").fancybox();
+});
 
 
