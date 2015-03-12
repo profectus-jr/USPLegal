@@ -6,7 +6,7 @@
 <td><i><%= link_to "Adicionar novo ítem", new_equipment_path %></i>
 <table class="table table-striped table-hover">
     <tr>
-        <th></th>
+        <!--th></th-->
         <th>Nome</th>
         <th>Tipo do Ítem</th>
         <th>Localização</th>
@@ -18,9 +18,9 @@
     </tr>
     <% @equipments.each do |equipment| %>
         <tr>
-            <td>
+            <!--td>
                <%= equipment.id %>
-            </td>
+            </td-->
             <td>
                 <%= equipment.name %>
             </td>
