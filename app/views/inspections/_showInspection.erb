@@ -34,7 +34,7 @@
     <tr>
         <th>Data da Inspeção</th>
         <td>
-	<% if (@inspection.group != nil) %> 
+	<% if (@inspection.group != nil) %>
 		<%= @inspection.group.vist_date %>
 	<% end %>
 	</td>
@@ -83,11 +83,11 @@
             </td>
             <td>
                 <% if (answer.is_ok == 0)
-                        %><p class="text-muted">Sim</p><% end
+                        %><span class="label label-success" "text-muted">Sim</span><% end
                     if (answer.is_ok == 1)
-                        %><p class="text-muted">Não</p><% end
+                        %><span class="label label-important" "text-muted">Não</span><% end
                     if (answer.is_ok == 2)
-                        %><p class="text-muted">Não se aplica</p><%
+                        %><span class="label label-info" "text-muted">Não se aplica</span><%
                     end
                 %>
             </td>

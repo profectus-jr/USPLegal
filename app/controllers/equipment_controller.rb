@@ -71,7 +71,7 @@ class EquipmentController < ApplicationController
       format.html {
         @inspections = Inspection.all
 
-        @equipments = Equipment.all
+        @equipments = Equipment.order("name").all
         @equipments = @equipments.where("equip_type_id = ?", params[:etype]) unless params[:etype].blank?
         @equipments = @equipments.where(building_id: params[:building_id]) unless params[:building_id].blank?
         @equipments = @equipments.where(%q{equipment.id in (
