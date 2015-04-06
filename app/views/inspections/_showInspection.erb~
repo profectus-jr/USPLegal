@@ -34,7 +34,7 @@
     <tr>
         <th>Data da Inspeção</th>
         <td>
-	<% if (@inspection.group != nil) %> 
+	<% if (@inspection.group != nil) %>
 		<%= @inspection.group.vist_date %>
 	<% end %>
 	</td>
@@ -83,11 +83,11 @@
             </td>
             <td>
                 <% if (answer.is_ok == 0)
-                        %><p class="text-muted">Sim</p><% end
+                        %><span class="label label-success" "text-muted">Sim</span><% end
                     if (answer.is_ok == 1)
-                        %><p class="text-muted">Não</p><% end
+                        %><span class="label label-important" "text-muted">Não</span><% end
                     if (answer.is_ok == 2)
-                        %><p class="text-muted">Não se aplica</p><%
+                        %><span class="label label-info" "text-muted">Não se aplica</span><%
                     end
                 %>
             </td>
@@ -100,13 +100,18 @@
                     Nenhum comentário.
                   <% end %>
                   <br/>
+	   <% img_count = 0 %>
            <% answer.upload.each do |upload| %>
-		<a class="fancybox" rel="group" href="<%= upload.photo.url %>">
-			<div class="img-container">
-				<img src="<%= upload.photo.url %>" alt="" />
-			</div>
-		</a>
-		<br/>
+		<% img_count = img_count + 1 %>
+		<div class="img-container">
+			<a class="fancybox" rel="group-<%= answer.id%>" href="<%= upload.photo.url %>">
+				<img src="<%= upload.photo.url %>" alt="preview" />
+			</a>
+		</div>
+		<% if img_count >= 3 %>
+			<% img_count = 0 %>
+			<br/>
+		<% end %>
           <% end %>
           </td>
         </tr>

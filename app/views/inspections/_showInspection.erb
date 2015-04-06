@@ -100,14 +100,30 @@
                     Nenhum comentário.
                   <% end %>
                   <br/>
+	   <% img_count = 0 %>
+	   <% if answer.upload.size > 0 %>
+		<table>
+	   <% end %>
            <% answer.upload.each do |upload| %>
-		<a class="fancybox" rel="group-<%= answer.id%>" href="<%= upload.photo.url %>">
-			<div class="img-container">
-				<img src="<%= upload.photo.url %>" alt="" />
-			</div>
-		</a>
-		<br/>
+		<% if img_count == 0 %>
+			<tr>
+	   	<% end %>
+		<% img_count = img_count + 1 %>
+		<td>
+		<div class="img-container">
+			<a class="fancybox" rel="group-<%= answer.id%>" href="<%= upload.photo.url %>">
+				<img src="<%= upload.photo.url %>" alt="preview" />
+			</a>
+		</div>
+		</td>
+		<% if img_count >= 3 %>
+			<% img_count = 0 %>
+			</tr>
+		<% end %>
           <% end %>
+	  <% if answer.upload.size > 0 %>
+		</table>
+	   <% end %>
           </td>
         </tr>
     <% end else %>
