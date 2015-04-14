@@ -165,6 +165,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   libv8
+  multi_json
   mysql2
   nested_form
   nokogiri
