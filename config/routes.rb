@@ -1,12 +1,12 @@
 Hera::Application.routes.draw do
- 
+
   devise_for :users, controllers: {users: "users"}
-  
+
   devise_scope :users do
     get 'users/login' => 'devise/sessions#new'
     get 'users/logout' => 'devise/sessions#destroy'
   end
-  
+
   resources :web_services_posts
   get "web_services/web_post" => "web_services_post#web_post"
 
@@ -27,7 +27,7 @@ Hera::Application.routes.draw do
   get "web_services/get_building_info" => "web_services#get_building_info"
   get "web_services/get_gml_by_code" => "web_services#get_gml_by_code"
 
-  
+
   # Desnecessario fazer dessa maneira, utilize RESTful resources
   # get "equipment/index"
   # get "equipment/show"
@@ -36,18 +36,20 @@ Hera::Application.routes.draw do
   get "inspections/index_history"
   #get "inspection/index"
   get "inspections/validate"
+  post "inspections/validate"
+  post "inspections/disapprove"
   resources :inspections
-  
+
   resources :groups
-  
+
   resources :buildings
-  
+
   resources :user
-  
+
   resources :equip_types
-  
+
   get "gerenciamento/index"
-  
+
     # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
