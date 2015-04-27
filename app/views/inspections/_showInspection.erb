@@ -95,9 +95,9 @@
         <tr>
           <td colspan="2">
            <% if !answer.comment.nil? %>
-                    <%= answer.comment%>
+                    Comentários: <%= answer.comment%>
                   <% else %>
-                    Nenhum comentário.
+                    Comentários: Nenhum.
                   <% end %>
                   <br/>
 	   <% img_count = 0 %>
@@ -109,10 +109,10 @@
 			<tr>
 	   	<% end %>
 		<% img_count = img_count + 1 %>
-		<td>
+		<td class="img-container">
 		<div class="img-container">
 			<a class="fancybox" rel="group-<%= answer.id%>" href="<%= upload.photo.url %>">
-				<img src="<%= upload.photo.url %>" alt="preview" />
+				<img class="image-details" src="<%= upload.photo.url %>" alt="preview" />
 			</a>
 		</div>
 		</td>
@@ -152,3 +152,19 @@
     </tr>
   </table>
 </div>
+
+<script type="text/javascript">
+
+//make the img fix
+//$('img').error(function(){
+//       	$(this).hide();
+//});
+
+//$( document ).ready(function() {
+//	if ( $.browser.msie && $.browser.version < 9 ) {
+//		$('img').each(function(){
+//     			$(this).attr('src', $(this).attr('src'));
+//		});
+//	}	
+//});
+</script>

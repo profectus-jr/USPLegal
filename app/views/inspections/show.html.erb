@@ -17,9 +17,11 @@
 <%= render :partial => 'showInspection' %>
 
 <br>
+<% if @inspection_url != nil %>
 <div class="container imgi-container">
   <img src="<%=  @inspection_url %>" class="imagi-details">
 </div>
-
+<% end %>
+<hr>
 <%= link_to "Nova Inspeção", new_inspection_path %>
 

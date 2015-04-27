@@ -6,7 +6,11 @@ class InspectionsController < ApplicationController
         @answers = Answer.where(inspection_id: params[:id])
         prepared_url = @inspection.photo_url.to_s
         prepared_url.slice!(0)
-        @inspection_url = root_url + prepared_url
+	if prepared_url == ""
+		@inspection_url = nil
+	else
+        	@inspection_url = root_url + prepared_url
+	end
     end
 
     def validate
