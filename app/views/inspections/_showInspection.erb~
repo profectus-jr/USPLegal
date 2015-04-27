@@ -12,6 +12,25 @@
 	max-width:		300px;
 	max-height:		200px;
 }
+
+.hrdivider
+{
+	border: 1px solid #000;
+}
+
+.hrdivider2
+{
+	border: 2px solid #000;
+}
+
+.cleartable {
+	border: none;
+}
+
+.borderedtable
+{
+	border: 1px solid #000;
+}
 </style>
 
 <table class="table">
@@ -50,88 +69,128 @@
     <tr>
         <th>Aprovado?</th>
         <td> <% if (@inspection.sent ==1)
-                    %><p class="text-muted">Enviado</p><% else
+                    %><p class="text-muted"><span class="label label-default" "text-muted">Enviado</span><% else
                 if (@inspection.approved == 0)
-                    %><p class="text-muted">Pendente</p><% end
+                    %><p class="text-muted"><span class="label label-info" "text-muted">Pendente</span><% end
                 if (@inspection.approved == 1)
-                    %><p class="text-muted">Aprovado</p><% end
+                    %><p class="text-muted"><span class="label label-success" "text-muted">Aprovado</span><% end
                 if (@inspection.approved == 2)
-                    %><p class="text-muted">Reprovado</p><% end
+                    %><p class="text-muted"><span class="label label-important" "text-muted">Reprovado</span><% end
                 end
                 %></td>
     </tr>
 </table>
 
-
+<hr class="hrdivider2" />
 
 <h3>Checklist</h3>
+<% if !(@inspection.equipment.is_there)  %>
+	Erro na Inspeção: Equipamento não Definido.
+<% else %>
 
-<% if (@inspection.equipment.is_there)  %>
-<table class="table">
-    <% if @answers.size == 0 %>
-      Nenhuma pergunta foi respondida.
-    <% end %>
-    <% @answers.each do |answer| %>
-        <tr>
-            <td>
-                <% if !answer.checklist_item.nil? %>
-                  <%= answer.checklist_item.question %>
-                  <br/>
-                <%  else %>
-                  !PERGUNTA REMOVIDA!
-                <% end %>
-            </td>
-            <td>
-                <% if (answer.is_ok == 0)
-                        %><span class="label label-success" "text-muted">Sim</span><% end
-                    if (answer.is_ok == 1)
-                        %><span class="label label-important" "text-muted">Não</span><% end
-                    if (answer.is_ok == 2)
-                        %><span class="label label-info" "text-muted">Não se aplica</span><%
-                    end
-                %>
-            </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-           <% if !answer.comment.nil? %>
-                    Comentários: <%= answer.comment%>
-                  <% else %>
-                    Comentários: Nenhum.
-                  <% end %>
-                  <br/>
-	   <% img_count = 0 %>
-	   <% if answer.upload.size > 0 %>
-		<table>
-	   <% end %>
-           <% answer.upload.each do |upload| %>
-		<% if img_count == 0 %>
-			<tr>
-	   	<% end %>
-		<% img_count = img_count + 1 %>
-		<td class="img-container">
-		<div class="img-container">
-			<a class="fancybox" rel="group-<%= answer.id%>" href="<%= upload.photo.url %>">
-				<img src="<%= upload.photo.url %>" alt="preview" />
-			</a>
-		</div>
-		</td>
-		<% if img_count >= 3 %>
-			<% img_count = 0 %>
-			</tr>
-		<% end %>
-          <% end %>
-	  <% if answer.upload.size > 0 %>
+	<% if @answers.size == 0 %>
+      		Nenhuma pergunta foi respondida ou está disponível para o equipamento selecionado.
+    	<% end %>
+    	
+	<% @answers.each do |answer| %>
+		
+		<hr class="hrdivider" />
+		<table class="cleartable">
+        	<tr>
+			<td width="20px">
+			<% if (answer.is_ok == 0) %>
+				<span class="glyphicon glyphicon-envelope"></span>
+			<% end %>
+                    	<% if (answer.is_ok == 1) %>
+				<span class="label label-important" "text-muted">Não</span>
+			<% end %>
+                    	<% if (answer.is_ok == 2) %>
+                        	<span class="label label-info" "text-muted">Não se aplica</span>
+			<% end %>
+            		</td>
+
+        	    	<td>
+			<% if !answer.checklist_item.nil? %>
+                		<strong> <%= answer.checklist_item.question %></strong>
+        		<% else %>
+				<strong>!!Pergunta Não Disponível!!</strong>
+        		<% end %>
+            		</td>
+            		
+		</tr>
+        	<tr>	
+			<td width="20px">
+			</td>
+          		<td width="100%">
+           			<% if !answer.comment.nil? && answer.comment != "" %>
+                    			Comentários: <%= answer.comment %>
+                  		<% else %>
+                    			Comentários: Nenhum.
+                  		<% end %>
+				<hr/>
+			</td>
+		</tr>
+		<tr>
+			<td width="20px">
+			</td>
+          		<td width="100%">
+				<% img_count = 0 %>
+
+				<% if answer.upload.size == 0 %>
+					Nenhuma Imagem Vinculada a Esta Pergunta.
+				<% end %>
+
+	   			<% if answer.upload.size > 0 %>
+					<table>
+	   			<% end %>
+
+				<% answer.upload.each do |upload| %>
+				<% if img_count == 0 %>
+					<tr>
+	   			<% end %>
+				<% img_count = img_count + 1 %>
+		
+				<td class="img-container">
+					<div class="img-container">
+						<a class="fancybox" rel="group-<%= answer.id%>" href="<%= upload.photo.url %>">
+							<center>
+								<img class="image-details borderedtable" src="<%= upload.photo.url %>" />
+							</center>
+						</a>
+					</div>
+				</td>
+				<% if img_count >= 3 %>
+					<% img_count = 0 %>
+					</tr>
+				<% end %>
+				<% end %>
+				<% if answer.upload.size > 0 %>
+					</table>	   			
+				<% end %>
+			</td>
+		</tr>
 		</table>
-	   <% end %>
-          </td>
-        </tr>
-    <% end else %>
-    <tr>Ítem de Inspeção Não Existe</tr>
-    <% end %>
-  <!--td><i><%= link_to "Nova Inspeção", new_inspection_path %></i-->
+    	<% end %>
+<% end %>
 </table>
 
+
+<% if @inspection_url != nil %>
+	<hr class="hrdivider2" />
+
+	<h3>Imagem de Referência</h3>
+	<hr class="hrdivider" />
+
+	<div class="img-container">
+		<a class="fancybox" rel="master" href="<%= @inspection_url %>">
+			<center>
+				<img class="image-details borderedtable" src="<%= @inspection_url %>" />
+			</center>
+		</a>
+	</div>
+<% end %>
+
+<hr class="hrdivider2" />
 
 <div class="container">
   <table>
