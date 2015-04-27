@@ -67,3 +67,4 @@ gem 'devise'
 gem 'paperclip'
 gem 'fancybox2-rails'
 gem 'multi_json', '1.11.0'
+gem "twitter-bootstrap-rails"

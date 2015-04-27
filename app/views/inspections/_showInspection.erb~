@@ -31,6 +31,29 @@
 {
 	border: 1px solid #000;
 }
+
+.td-info-x {
+    width: 30px;
+    height: 35px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+
+.glyphicon-sim {
+    font-size: 30px;
+    color: green;
+}
+
+.glyphicon-nao {
+    font-size: 30px;
+    color: red;
+}
+.glyphicon-nsa {
+    font-size: 30px;
+    color: blue;
+}
+
 </style>
 
 <table class="table">
@@ -97,19 +120,19 @@
 		<hr class="hrdivider" />
 		<table class="cleartable">
         	<tr>
-			<td width="20px">
+			<td class="td-info-x">
 			<% if (answer.is_ok == 0) %>
-				<span class="glyphicon glyphicon-envelope"></span>
+				<span class="icon-ok-circle glyphicon-sim">  </span>
 			<% end %>
                     	<% if (answer.is_ok == 1) %>
-				<span class="label label-important" "text-muted">Não</span>
+				<span class="icon-remove-circle glyphicon-nao">  </span>
 			<% end %>
                     	<% if (answer.is_ok == 2) %>
-                        	<span class="label label-info" "text-muted">Não se aplica</span>
+                        	<span class="icon-ban-circle glyphicon-nsa">  </span>
 			<% end %>
             		</td>
 
-        	    	<td>
+        	    	<td width="100%">
 			<% if !answer.checklist_item.nil? %>
                 		<strong> <%= answer.checklist_item.question %></strong>
         		<% else %>
@@ -119,7 +142,7 @@
             		
 		</tr>
         	<tr>	
-			<td width="20px">
+			<td class="td-info-x">
 			</td>
           		<td width="100%">
            			<% if !answer.comment.nil? && answer.comment != "" %>
@@ -131,7 +154,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td width="20px">
+			<td class="td-info-x">
 			</td>
           		<td width="100%">
 				<% img_count = 0 %>
