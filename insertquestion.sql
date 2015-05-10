@@ -1,0 +1,2 @@
+INSERT INTO checklist_items(question, equip_type_id, current) VALUES('A rampa possui inclinação máxima de 8.33%, atendendo ao desnível máximo por segmento de rampa exigido?', 6, NULL);
+INSERT INTO checklist_items(question, equip_type_id, current) VALUES('A rampa possui inclinação máxima de 8.33%, atendendo ao desnível máximo por segmento de rampa exigido?', 1, NULL);
