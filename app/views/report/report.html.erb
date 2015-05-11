@@ -1,0 +1,65 @@
+<style>
+.img-container
+{
+	padding:		1px;
+	width:		300px;
+	height:		200px;
+}
+
+.image-details
+{
+
+	max-width:		300px;
+	max-height:		200px;
+}
+
+.hrdivider
+{
+	border: 1px solid #000;
+}
+
+.hrdivider2
+{
+	border: 2px solid #000;
+}
+
+.cleartable {
+	border: none;
+}
+
+.borderedtable
+{
+	border: 1px solid #000;
+}
+
+.td-info-x {
+    width: 30px;
+    height: 35px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+
+.glyphicon-sim {
+    font-size: 30px;
+    color: green;
+}
+
+.glyphicon-nao {
+    font-size: 30px;
+    color: red;
+}
+.glyphicon-nsa {
+    font-size: 30px;
+    color: blue;
+}
+
+</style>
+<% if (@type == 1) %>
+	Modo de Impressão: Inspeção
+	<%= render :partial => 'inspections/showData' %>
+
+	<div style="page-break-after: always"></div>
+
+	<%= render :partial => 'inspections/showChecklist' %>
+<% end %>

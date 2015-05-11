@@ -1,0 +1,22 @@
+<h1>Configurações do Relatório</h1>
+<hr>
+
+<%= form_tag({controller: "report", action: "report_config_save"}, method: "post") do %>
+	<%= label_tag(:lcr, "Ordem das Checklists no Relatório") %>
+	<br/>	
+	<%= select_tag "types", options_from_collection_for_select(@equiptypes, "id", "kind") %>
+	<%= link_to "Adicionar", "javascript:void(0);", onclick: "add_entry();"%>
+	<br/>
+	<%= select_tag "order", nil, multiple: true %>
+	<br/>
+	<%= submit_tag("Salvar") %>
+
+<% end %>
+
+<script type="text/javascript">
+	function add_entry() {
+		$id = $('#types').val();
+		$text = $('#types').text();
+		alert("Selected: " . $id . " - " . $text);
+	}
+</script>

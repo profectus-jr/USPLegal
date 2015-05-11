@@ -135,7 +135,7 @@ class InspectionsController < ApplicationController
 		@buildings = Building.order("name").all
 		@groups = Group.all
 
-		@inspections = Inspection.where("approved <> 0").order("created_at DESC")
+		@inspections = Inspection.where("approved <> 0 AND NOT approved = 2").order("created_at DESC")
 		@inspections = @inspections.where("user_id = ?", params[:user_id]) unless params[:user_id].blank?
 
 		@inspections = @inspections.where("group_id = ?", params[:group_id]) unless params[:group_id].blank?

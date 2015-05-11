@@ -1,0 +1,47 @@
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <td><%= @inspection.id%></td>
+    </tr>
+    <tr>
+        <th>Vistoria</th>
+        <td><%= @inspection.group.try(:name)%></td>
+    </tr>
+    <tr>
+        <th>Tipo do Ítem</th>
+        <td><%= @inspection.equipment.equip_type.kind%></td>
+    </tr>
+    <tr>
+        <th>Localização</th>
+        <td><%= @inspection.equipment.building.name%></td>
+    </tr>
+    <tr>
+        <th>Data da Inspeção</th>
+        <td>
+	<% if (@inspection.group != nil) %>
+		<%= @inspection.group.vist_date %>
+	<% end %>
+	</td>
+    </tr>
+    <tr>
+        <th>Inspetor</th>
+        <td><%= @inspection.user.name%></td>
+    </tr>
+    <tr>
+        <th>Descrição</th>
+        <td><%= @inspection.description%></td>
+    </tr>
+    <tr>
+        <th>Aprovado?</th>
+        <td> <% if (@inspection.sent ==1)
+                    %><p class="text-muted"><span class="label label-default" "text-muted">Enviado</span><% else
+                if (@inspection.approved == 0)
+                    %><p class="text-muted"><span class="label label-info" "text-muted">Pendente</span><% end
+                if (@inspection.approved == 1)
+                    %><p class="text-muted"><span class="label label-success" "text-muted">Aprovado</span><% end
+                if (@inspection.approved == 2)
+                    %><p class="text-muted"><span class="label label-important" "text-muted">Reprovado</span><% end
+                end
+                %></td>
+    </tr>
+</table>

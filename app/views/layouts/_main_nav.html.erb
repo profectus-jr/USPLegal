@@ -31,10 +31,10 @@
             <%= link_to "Tipos de Item", equip_types_path%>
           </li>
           <li class="<%= 'active' if current_page?(buildings_path) %>">
-            <%= link_to "Prédios", buildings_path%>
+            <%= link_to "Localização", buildings_path%>
           </li>
           <li class="<%= 'active' if current_page?(user_index_path) %>">
-            <%= link_to "Meus dados", user_index_path%>
+            <%= link_to "Meus Dados", user_index_path%>
           </li>
           <li>
             <%= link_to 'Sair', destroy_user_session_path, method: :delete %>

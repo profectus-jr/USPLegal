@@ -1,5 +1,9 @@
 Hera::Application.routes.draw do
 
+  get 'report' => "report#report"
+  get 'report/config' => "report#report_config"
+  post 'report/config_save' => "report#report_config_save"
+
   devise_for :users, controllers: {users: "users"}
 
   devise_scope :users do
