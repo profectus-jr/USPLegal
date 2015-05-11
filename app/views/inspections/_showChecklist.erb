@@ -1,6 +1,6 @@
 <h3>Checklist - <%= @inspection.equipment.equip_type.kind%></h3>
 <% if !(@inspection.equipment.is_there)  %>
-	Erro na Inspeção: Equipamento não Definido.
+	Aviso: Equipamento Não Existe.
 <% else %>
 
 	<% if @answers.size == 0 %>
