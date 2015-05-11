@@ -1,0 +1,16 @@
+<h2>Localização: <%= @local.name %></h2>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>Vistoria</th>
+        <th></th>
+    </tr>
+    <% vistoria = 1 %>
+    <% @groups.each do |grp| %>
+        <tr>
+          <td>
+		<%= link_to "Vistoria #" + vistoria.to_s + " " + grp.name + " - " + grp.vist_date.to_s , group_path(id: grp.id) %>
+		<% vistoria = vistoria + 1 %>
+            </td>
+        </tr>
+    <% end %>
+</table>

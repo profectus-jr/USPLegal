@@ -47,7 +47,12 @@ Hera::Application.routes.draw do
 
   resources :groups
 
+  get "buildings/groups" => "buildings#groups"
+  get "buildings/groups/detail" => "buildings#groupsdetail"
+  
   resources :buildings
+
+  
 
   resources :user
 

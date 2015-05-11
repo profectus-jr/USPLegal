@@ -27,6 +27,15 @@ class BuildingsController < ApplicationController
     bld.save
     redirect_to buildings_path
   end
+
+  def groups
+    @blds = Building.all.order("name ASC")
+  end
+
+  def groupsdetail 
+    @local = Building.find(params[:id])
+    @groups = Group.where(building_id: params[:id]).order("name ASC")
+  end
   
   def building_params
     params.require(:building).permit(:name,:idAtlas)
