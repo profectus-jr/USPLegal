@@ -71,7 +71,7 @@ class EquipmentController < ApplicationController
       format.html {
         @inspections = Inspection.all
 
-        @equipments = Equipment.order("name").all
+        @equipments = Equipment.all
         @equipments = @equipments.where("equip_type_id = ?", params[:etype]) unless params[:etype].blank?
         @equipments = @equipments.where(building_id: params[:building_id]) unless params[:building_id].blank?
         @equipments = @equipments.where(%q{equipment.id in (
@@ -86,6 +86,7 @@ class EquipmentController < ApplicationController
                         group by EquipmentID) as B where B.is_ok = ?)}, params[:conserved_id]) unless params[:conserved_id].blank?
 
 
+	@equipments = @equipments.order("name ASC")
         @equipTypes = EquipType.order("kind").all
         @users = User.all
         @buildings = Building.order("name").all
