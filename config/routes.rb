@@ -41,6 +41,7 @@ Hera::Application.routes.draw do
   #get "inspection/index"
   get "inspections/validate"
   post "inspections/validate"
+  get "inspections/disapprove"
   post "inspections/disapprove"
   resources :inspections
 
