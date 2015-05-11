@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   
   def show
     @group = Group.find(params[:id])
-    @inspections = Inspection.where('group_id = ' + params[:id]).order("name ASC")
+    @inspections = Inspection.where('group_id = ' + params[:id]).order("description ASC")
   end
   
   def new
