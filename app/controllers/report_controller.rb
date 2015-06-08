@@ -16,6 +16,10 @@ class ReportController < ApplicationController
         		@inspection_url = root_url + prepared_url
 		end
 	end
+	if @type == 2
+		@vistoria = Group.find(id)
+		@inspecoes = Inspection.where(group_id: @vistoria.id)
+	end
   end
 
   def report_config

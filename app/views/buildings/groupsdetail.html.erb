@@ -10,7 +10,10 @@
           <td>
 		<%= link_to "Vistoria #" + vistoria.to_s + " " + grp.name + " - " + grp.vist_date.to_s , group_path(id: grp.id) %>
 		<% vistoria = vistoria + 1 %>
-            </td>
+          </td>
+	  <td>
+		<%= link_to "Gerar Relatório" , report_path(id: grp.id, t: 2) %> 
+	  </td>
         </tr>
     <% end %>
 </table>

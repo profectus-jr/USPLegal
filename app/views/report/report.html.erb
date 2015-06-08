@@ -63,3 +63,13 @@
 
 	<%= render :partial => 'inspections/showChecklist' %>
 <% end %>
+<% if (@type == 2) %>
+	Modo de Impressão: Vistoria
+	<% @inspecoes.each do |inspect| %>
+		<%= render :partial => 'inspections/showData', :locals => {:@inspection => inspect} %>
+
+		<div style="page-break-after: always"></div>
+
+		<%= render :partial => 'inspections/showChecklist', :locals => {:@inspection => inspect, :@answers => Answer.where(inspection_id: inspect.id)}  %>
+	<% end %>
+<% end %>

@@ -14,13 +14,13 @@
         	<tr>
 			<td class="td-info-x">
 			<% if (answer.is_ok == 0) %>
-				<span class="icon-ok-circle glyphicon-sim">  </span>
+				<span title="Sim" class="icon-ok-circle glyphicon-sim"></span>
 			<% end %>
                     	<% if (answer.is_ok == 1) %>
-				<span class="icon-remove-circle glyphicon-nao">  </span>
+				<span title="Não" class="icon-remove-circle glyphicon-nao"></span>
 			<% end %>
                     	<% if (answer.is_ok == 2) %>
-                        	<span class="icon-ban-circle glyphicon-nsa">  </span>
+                        	<span title="Não Se Aplica" class="icon-ban-circle glyphicon-nsa"></span>
 			<% end %>
             		</td>
 

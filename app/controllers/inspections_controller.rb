@@ -59,58 +59,65 @@ class InspectionsController < ApplicationController
     @answertypes = [["Sim",0],["Nao",1], ["Nao se Aplica",2]]
     @answer_data = Answer.where(inspection_id: params[:id])
     @answer_test = @answer_data.where(checklist_item_id: 29)
+    
   end
 
-  def update
-    inspection = Inspection.find params[:id]
-    inspection.group_id = params[:inspection][:group_id]
-    inspection.save
-    answer_data = params[:answers]
-    answer_data.each do |answer|
-      answer_db = Answer.where(inspection_id: inspection.id, checklist_item_id: answer[0])
-      answer_db_data = answer_db.first #passa de relation para o objeto que precisamos
+def update
+	inspection = Inspection.find params[:id]
+	inspection.group_id = params[:inspection][:group_id]
+	inspection.save
+	answer_data = params[:answers]
+	answer_data.each do |answer|
+		answer_db = Answer.where(inspection_id: inspection.id, checklist_item_id: answer[0])
+		answer_db_data = answer_db.first #passa de relation para o objeto que precisamos
 
-      photo_data = nil
+		photo_data = nil
 
-      if (!params[:photos].nil?)
-        photo_data = params[:photos][answer[0]]
-      end
+		if (!params[:photos].nil?)
+			photo_data = params[:photos][answer[0]]
+		end
 
-      if (answer_db_data.nil?)
-        answer_new = Answer.new
-        answer_new.inspection_id = inspection.id
-        answer_new.checklist_item_id = answer[0]
-        answer_new.is_ok = answer[1]
-        answer_new.comment = params["comment_" + answer[0].to_s]
-        answer_new.save
+		if (answer_db_data.nil?)
+			answer_new = Answer.new
+			answer_new.inspection_id = inspection.id
+			answer_new.checklist_item_id = answer[0]
+			answer_new.is_ok = answer[1]
+			answer_new.comment = params["comment_" + answer[0].to_s]
+			answer_new.save
 
-        #upload!
-        if (!photo_data.nil?)
-          photo_data.each do |photo|
-            new_upload = Upload.new
-            new_upload.answer_id = answer_new.id
-            new_upload.photo = photo
-            new_upload.save
-          end
-        end
-      else
-        answer_db_data.is_ok = answer[1]
-        answer_db_data.comment = params["comment_" + answer[0].to_s]
-        answer_db_data.save
+			#upload!
+			if (!photo_data.nil?)
+				photo_data.each do |photo|
+				new_upload = Upload.new
+				new_upload.answer_id = answer_new.id
+				new_upload.photo = photo
+				new_upload.save	
+			end
+		end
+		else
+			answer_db_data.is_ok = answer[1]
+        		answer_db_data.comment = params["comment_" + answer[0].to_s]
+        		answer_db_data.save
 
-        #upload!
-        if (!photo_data.nil?)
-          photo_data.each do |photo|
-            new_upload = Upload.new
-            new_upload.answer_id = answer_db_data.id
-            new_upload.photo = photo
-            new_upload.save
-          end
-        end
-      end
-    end
-    redirect_to inspection_path id: inspection.id
-  end
+        		#upload!
+        		if (!photo_data.nil?)
+          			photo_data.each do |photo|
+            				new_upload = Upload.new
+            				new_upload.answer_id = answer_db_data.id
+            				new_upload.photo = photo
+            				new_upload.save
+          			end
+        		end
+      		end
+
+		#process the removals?
+		to_remove = params["removal_" + answer[0].to_s]
+		if (!to_remove.nil?)
+			@a = 0
+		end
+    	end
+   	redirect_to inspection_path id: inspection.id
+end
 
 	def index
 		@equip_types = EquipType.order("kind").all
