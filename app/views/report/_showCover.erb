@@ -1,5 +1,6 @@
 <br/>
-<img style="width:200px; float: left;" src="/nucleo.png"/><img style="width:200px; float: right;" src="/usplegal.jpg"/>
+<%= image_tag "nucleo.png", style: "width:200px; float: left;"%>
+<%= image_tag "usplegal.jpg", style: "width:200px; float: right;"%>
 <br/>
 <br/>
 <br/>
@@ -40,9 +41,42 @@
 <br/>
 <hr class="hrdivider2" />
 <%= @vistoria.name %><br/>
-Data de Inspeção: - data-<br/>
-Authores: -autores-<br/>
-Revisores: -revisores-<br/>
+<% if @mode == 1 %>
+	Data de Inspeção: <%= text_field_tag 'data', 'Digite a Data de Inspeção' %><br/>
+	Authores e Revisores<br/> 
+	Usuários <%= select_tag "users", options_for_select(@users) %>
+	<%= link_to "[Adicionar Como Author]", "javascript:void(0);", onclick: "$('#authors').append($('#users > option:selected').clone());"%>
+	<%= link_to "[Adicionar Como Revisor]", "javascript:void(0);", onclick: "$('#reviewers').append($('#users > option:selected').clone());"%>
+	<br/>
+	Autores<br/><%= select_tag "authors", "", multiple: true %>
+	<br/>
+	Revisores<br/><%= select_tag "reviewers", "", multiple: true %>
+	<br/>
+	<%= link_to "Limpar Lista de Autores", "javascript:void(0);", onclick: "$('#authors').empty();"%>
+	<br/>
+	<%= link_to "Limpar Lista de Revisores", "javascript:void(0);", onclick: "$('#reviewers').empty();"%>
+<% end %>
+
+<% if @mode == 2 %>
+	Data de Inspeção: <%= @data_inspec %><br/>
+	<% if @autores.nil? %>
+		Authores: Não Especificados.
+	<% else %>
+		Authores: <% @autores.each do |author| %>
+		[<%= User.find(author).name %>] 
+		<% end %>
+	<% end %>
+	<br/>
+	<% if @revisores.nil? %>
+		Revisores: Não Especificados.
+	<% else %>
+		Revisores: <% @revisores.each do |revisor| %>
+		[<%= User.find(revisor).name %>] 	
+		<% end %><br/>
+	<% end %>
+<% end %>
 <hr class="hrdivider2" />
+
+
 
 

@@ -92,7 +92,7 @@
 			//approve with ajax
 			$.ajax({
 				type: "GET",
-				url: "inspections/validate",
+				url: "validate",
 				data: {id:<%=@inspection.id%>}
 				}
 			).done(function() {
@@ -108,7 +108,7 @@
 			//repprove with ajax
 			$.ajax({
 				type: "GET",
-				url: "inspections/disapprove",
+				url: "disapprove",
 				data: {id:<%=@inspection.id%>}
 				}
 			).done(function() {

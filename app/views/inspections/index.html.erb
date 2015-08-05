@@ -1,9 +1,9 @@
-<div class="search">
+<div id="search_block" class="search" style="display: none;">
   <%= render :partial => 'search' %>
 </div>
 
-
-<td><i><%= link_to "Nova Inspeção", new_inspection_path %></i>
+<i><%= link_to "[Criar Nova Inspeção]", new_inspection_path %></i>
+<i><%= link_to "[Filtros]", "javascript:void(0);", onclick: "$('#search_block').toggle();", style: "float:right;"%></i>
 <table class="table table-striped table-hover">
     <tr>
         <!--th></th-->

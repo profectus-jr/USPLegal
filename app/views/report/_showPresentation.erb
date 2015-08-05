@@ -2,6 +2,25 @@
 <h3>APRESENTAÇÃO</h3>
 <hr class="hrdivider2" />
 
+<% if @mode == 1 %>
+	<%= text_area_tag 'paragraph_2', "Digite um novo parágrafo a ser inserido!", style: "width: 100%;"  %><br/>
+	<%= link_to "[Adicionar Parágrafo]", "javascript:void(0);", onclick: "$('#presentation').append($('<option />').text($('#paragraph_2').val()).val($('#paragraph_2').val()));" %>
+	<br/>
+	<br/><%= select_tag "presentation", "", multiple: true, style: "width: 100%;"  %>
+	<br/>
+	<%= link_to "Limpar", "javascript:void(0);", onclick: "$('#presentation').empty();"%>
+<% end %>
+
+<% if @mode == 2 %>
+	<% if !@presentation.nil? %>
+		<% @presentation.each do |paragraph| %>
+			<div style="text-align: justify; text-justify: inter-word; text-indent: 50px;"><%= paragraph %></div> 
+		<% end %>
+	<% end %>
+<% end %>
+
+<!--
 <div style="text-align: justify; text-justify: inter-word; text-indent: 50px;">
 	Este documento averigua a acessibilidade (no(s) prédio(s) do(a) - localização). A avaliação foi feita em (número de visita(s)) à edificação, (realizadas) por (estagiário(a)s) do Programa USP Legal. 
 </div>
+--!>

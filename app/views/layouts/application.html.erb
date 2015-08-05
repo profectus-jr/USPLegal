@@ -3,6 +3,20 @@
 <head>
   <title>Sistema Hera USPLegal</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <style>
+  	.wrapper {
+	    min-height: 100%;
+	    height: auto !important;
+	    height: 100%;
+	    margin: 0 auto 0px; /* the bottom margin is the negative value of the footer's height */
+	}
+	.footer-navx, .push-navx {
+	    height: 60px; /* .push must be the same height as .footer */
+	}
+	.header-navx, .push2-navx {
+	    height: 150px; /* .push must be the same height as .footer */
+	}
+  </style>
 </head>
 <body>
   <%= javascript_include_tag 'rails' %>
@@ -13,8 +27,23 @@
   <!-- p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p-->
 
-  <%= render "layouts/main_nav" %>
-  <%= yield %>
+	<!-- header -->	
+	<!-- navigation -->
 
+	<xyz class="header-navx" style="position: fixed; top: 0px; left:0px; width: 100%">	
+		<%= render "layouts/main_nav" %>
+	</xyz>
+
+	<!-- page -->
+	
+	<div class="push2-navx"></div>
+	<xyz class="wrapper">
+		<%= yield %>
+	</xyz>
+
+	<!-- bottom -->
+	<xyz class="footer-navx" style="position: fixed; bottom: 0px; left:0px; width: 100%; height: 60px;">
+		<%= render "layouts/bottom" %>
+	</xyz>
 </body>
 </html>

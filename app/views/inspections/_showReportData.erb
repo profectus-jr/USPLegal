@@ -1,10 +1,18 @@
 <hr class="hrdivider2" />
 <h3>Checklist - <%= @inspection.equipment.equip_type.kind%></h3>
 <hr class="hrdivider2" />
-<br/>
 Descrição: <%= @inspection.description%></td><br/>
-Foto Geral <br/>
-<center><img src="<%= @inspection_url %>" /></center><br/>
--parte introdutoria-<br/>
+<div id="fotogeral">
+	Foto Geral (Se Disponível) <br/>
+	<% inspection_url = "error.img" %>
+	<% prepared_url = @inspection.photo_url.to_s %>
+    <% prepared_url.slice!(0) %>
+	<% if prepared_url == "" || prepared_url == nil %>
+	<%		inspection_url = "error.img" %>
+	<%	else %>
+    <%    	inspection_url = root_url + prepared_url %>
+	<%	end %>
+	<center><img src="<%= inspection_url %>" onerror="$('#fotogeral').hide(); $(this).onerror='';"/></center><br/>
+</div>
 
 

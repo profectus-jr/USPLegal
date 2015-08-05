@@ -2,6 +2,26 @@
 <h3>METODOLOGIA</h3>
 <hr class="hrdivider2" />
 
+<div style="text-align: justify; text-justify: inter-word; text-indent: 50px;"></div>
+
+<% if @mode == 1 %>
+	<%= text_area_tag 'paragraph_1', "Digite um novo parágrafo a ser inserido!", style: "width: 100%;"  %><br/>
+	<%= link_to "[Adicionar Parágrafo]", "javascript:void(0);", onclick: "$('#methodology').append($('<option />').text($('#paragraph_1').val()).val($('#paragraph_1').val()));" %>
+	<br/>
+	<br/><%= select_tag "methodology", "", multiple: true, style: "width: 100%;"  %>
+	<br/>
+	<%= link_to "Limpar", "javascript:void(0);", onclick: "$('#methodology').empty();"%>
+<% end %>
+
+<% if @mode == 2 %>
+	<% if !@methodology.nil? %>
+		<% @methodology.each do |paragraph| %>
+			<div style="text-align: justify; text-justify: inter-word; text-indent: 50px;"><%= paragraph %></div> 
+		<% end %>
+	<% end %>
+<% end %>
+
+<!--
 <div style="text-align: justify; text-justify: inter-word; text-indent: 50px;">
 	A metodologia de inspeção baseia-se nos seguintes documentos: Norma ABNT 9050/04; checklist da Secretaria Municipal da Pessoa com Deficiência e Mobilidade Reduzida (SMPED) da Prefeitura da Cidade de São Paulo e Roteiro USP Legal de inspeção de espaços acadêmicos. Além do preenchimento da checklist, realizou-se uma documentação fotográfica das condições de acessibilidade e as observações mais relevantes estão apresentadas no corpo deste documento. 
 </div>
@@ -11,3 +31,4 @@
 <div style="text-align: justify; text-justify: inter-word; text-indent: 50px;">
 	Ressalta-se que essas vistorias são realizadas por bolsistas e estagiários do Programa USP Legal, que buscam um aprofundamento na questão da acessibilidade física na Universidade de São Paulo. Os relatórios produzidos são avaliados pela coordenação do Programa, certificada (relacionar autores e revisores certificados) pela Secretaria Municipal da Pessoa com Deficiência e Mobilidade Reduzida (SMPED) / Comissão Permanente de Acessibilidade (CPA), no Curso de Educação Continuada e Certificação em Acessibilidade.
 </div>
+!>

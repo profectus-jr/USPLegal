@@ -32,7 +32,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'libv8'
-gem 'therubyracer', :platform => :ruby
+gem 'therubyracer', '0.10.2', :platforms => :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

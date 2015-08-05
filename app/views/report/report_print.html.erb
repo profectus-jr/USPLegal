@@ -54,39 +54,7 @@
     color: blue;
 }
 
-div.floating-menu {position:fixed;left:5px;top:5px;background:orange;padding:5px;width:200px;z-index:100;border: black solid 1px;}
-div.floating-menu a, div.floating-menu h3 {display:block;margin:0 0.5em;}
-
 </style>
-
-<script type="text/javascript">
-function prepareAndSubmit()
-{
-	selectAllSelectEntries(document.getElementById('authors'));
-	selectAllSelectEntries(document.getElementById('reviewers'));
-	selectAllSelectEntries(document.getElementById('presentation'));
-	selectAllSelectEntries(document.getElementById('methodology'));
-	document.forms["reporter"].submit();
-}
-
-function selectAllSelectEntries(select) 
-{
-	for ( var i = 0, l = select.options.length, o; i < l; i++ ) {
-		o = select.options[i];
-		o.selected = true;
-	}
-}
-</script>
-
-<div class="floating-menu">
-<h4>Relatório</h4>
-<a href="javascript:void(0);" onclick='prepareAndSubmit();'>Gerar Versão Para Impressão</a>
-</div>
-
-<%= form_tag({controller: "report", action: "report_print"}, method: "post",id: "reporter") do %>
-
-<input type="hidden" id="id" name="id" value="<%= params[:id] %>" />
-<input type="hidden" id="t" name="t" value="<%= params[:t] %>" />
 
 <% if (@type == 1) %>
 	Modo de Impressão: Inspeção
@@ -97,7 +65,6 @@ function selectAllSelectEntries(select)
 	<%= render :partial => 'inspections/showChecklist' %>
 <% end %>
 <% if (@type == 2) %>
-	Modo de Edição e Inserção de Dados
 	<%= render :partial => 'showCover' %>
 	<div style="page-break-after: always"></div>
 	<%= render :partial => 'showIndex' %>	
@@ -113,11 +80,8 @@ function selectAllSelectEntries(select)
 			<%= render :partial => 'inspections/showReportData', :locals => {:@inspection => inspect} %>
 			
 			<% parteintro_name = 'introd_' + inspect.id.to_s %>
-			<br/>
-			Parte Introdutória
-			<br/>
-			<%= text_area_tag parteintro_name , "", style: "width: 100%;"  %>
-			<br/>
+			
+			<%= params[parteintro_name.to_sym]%><br/>
 			<hr class="hrdivider" />
 			
 			<%= render :partial => 'inspections/showReference' %>
@@ -125,5 +89,4 @@ function selectAllSelectEntries(select)
 			<div style="page-break-after: always"></div>
 		<% end %>
 	<% end %>
-<% end %>
 <% end %>

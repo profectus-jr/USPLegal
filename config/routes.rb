@@ -1,6 +1,7 @@
 Hera::Application.routes.draw do
 
   get 'report' => "report#report"
+  post 'report_print' => "report#report_print"
   get 'report/config' => "report#report_config"
   post 'report/config_save' => "report#report_config_save"
 

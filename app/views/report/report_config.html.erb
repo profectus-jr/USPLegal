@@ -1,22 +1,42 @@
 <h1>Configurações do Relatório</h1>
 <hr>
 
-<%= form_tag({controller: "report", action: "report_config_save"}, method: "post") do %>
+<%= form_tag({controller: "report", action: "report_config_save"}, name: "reportform", method: "post") do %>
 	<%= label_tag(:lcr, "Ordem das Checklists no Relatório") %>
 	<br/>	
 	<%= select_tag "types", options_from_collection_for_select(@equiptypes, "id", "kind") %>
 	<%= link_to "Adicionar", "javascript:void(0);", onclick: "add_entry();"%>
 	<br/>
-	<%= select_tag "order", nil, multiple: true %>
+	<%= select_tag "order", options_for_select(@previous_config), multiple: true %>
 	<br/>
-	<%= submit_tag("Salvar") %>
-
+	<%= link_to "Limpar Lista", "javascript:void(0);", onclick: "clear_list();"%>
+	<hr/>
+	<button type='button' onclick='prepareAndSubmit()' >Salvar</button>
 <% end %>
 
 <script type="text/javascript">
-	function add_entry() {
-		$id = $('#types').val();
-		$text = $('#types').text();
-		alert("Selected: " . $id . " - " . $text);
+function add_entry() 
+{
+	var $options = $("#types > option:selected").clone();
+	$('#order').append($options);
+}
+
+function clear_list() 
+{
+	$("#order").empty();
+}
+
+function prepareAndSubmit()
+{
+	selectAllSelectEntries(document.getElementById('order'));
+	document.forms["reportform"].submit();
+}
+
+function selectAllSelectEntries(select) 
+{
+	for ( var i = 0, l = select.options.length, o; i < l; i++ ) {
+		o = select.options[i];
+		o.selected = true;
 	}
+}
 </script>
