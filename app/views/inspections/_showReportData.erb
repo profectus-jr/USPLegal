@@ -12,10 +12,8 @@ Descrição: <%= @inspection.description%></td><br/>
 	<%	else %>
     <%    	inspection_url = root_url + prepared_url %>
 	<%	end %>
-	<a class="fancybox" rel="master" href="<%= inspection_url %>">
-		<center>
-			<img class="image-details borderedtable" src="<%= inspection_url %>" onerror="$('#fotogeral_<%= @inspection.id %>').hide(); $(this).onerror='';" />
-		</center>
+	<a class="fancybox" rel="geral_<%= @inspection.id %>" href="<%= inspection_url %>">
+		<img class="image-details borderedtable" src="<%= inspection_url %>" onerror="$('#fotogeral_<%= @inspection.id %>').hide(); $(this).onerror='';" />
 	</a>
 </div>
 
