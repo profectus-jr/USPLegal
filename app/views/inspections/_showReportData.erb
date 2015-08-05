@@ -2,8 +2,8 @@
 <h3>Checklist - <%= @inspection.equipment.equip_type.kind%></h3>
 <hr class="hrdivider2" />
 Descrição: <%= @inspection.description%></td><br/>
-<div id="fotogeral">
-	Foto Geral (Se Disponível) <br/>
+<div id="fotogeral_<%= @inspection.id %>">
+	Foto Geral <br/>
 	<% inspection_url = "error.img" %>
 	<% prepared_url = @inspection.photo_url.to_s %>
     <% prepared_url.slice!(0) %>
@@ -12,7 +12,11 @@ Descrição: <%= @inspection.description%></td><br/>
 	<%	else %>
     <%    	inspection_url = root_url + prepared_url %>
 	<%	end %>
-	<center><img src="<%= inspection_url %>" onerror="$('#fotogeral').hide(); $(this).onerror='';"/></center><br/>
+	<a class="fancybox" rel="master" href="<%= inspection_url %>">
+		<center>
+			<img class="image-details borderedtable" src="<%= inspection_url %>" onerror="$('#fotogeral_<%= @inspection.id %>').hide(); $(this).onerror='';" />
+		</center>
+	</a>
 </div>
 
 
