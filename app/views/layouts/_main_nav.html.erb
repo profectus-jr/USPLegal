@@ -18,6 +18,11 @@
 			</li>
 		</ul>
 		<ul class="nav" style="float:right;">
+			<% if current_user.kind == "admin"%>
+			 	<li>
+					<%= link_to "Configurações", configuration_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
+				</li>
+			<%end%>
 			<li>
 				<%= link_to "Meus Dados", user_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
 			</li>
@@ -58,5 +63,13 @@
 	
       </div>
     </div>
+    
+    <!--<div class="navbar">
+      <div class="navbar-inner", style="min-height: 20px;">
+        <ul class="nav">
+        </ul>
+      </div>
+    </div>
+    -->
 </div>
 <% end -%>
