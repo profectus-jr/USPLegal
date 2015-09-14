@@ -2,12 +2,16 @@
   <%= render :partial => 'search' %>
 </div>
 
+
+
 <i><%= link_to "[Criar Nova Inspeção]", new_inspection_path %></i>
+<i><a href="javascript:void(0);" onclick="$('#tab_list').toggle(); $('#tab_hidden').toggle();">[Alternar Visão]<a/></i>
 <i><%= link_to "[Filtros]", "javascript:void(0);", onclick: "$('#search_block').toggle();", style: "float:right;"%></i>
+<div id="tab_list" style="display:none;">
 <table class="table table-striped table-hover">
     <tr>
         <!--th></th-->
-        <th>Grupo</th>
+        <th>Vistoria</th>
         <th>Equipamento</th>
         <th>Localização</th>
         <th>Data da Inspeção</th>
@@ -64,3 +68,29 @@
         </tr>
     <% end -%>
 </table>
+</div>
+<div id="tab_hidden">
+	<% @buildings.each do |loc| %>
+		<a onclick="$('#bld_<%=loc.id%>').toggle();"><i class="icon-chevron-right"></i><%= loc.name%></a>
+		<% vistorias = Group.where(building_id: loc.id).order("name")%>
+		(<%= vistorias.size%> vistoria(s))<br/>
+		<div id="bld_<%=loc.id%>" style="display:none;">
+		<% vistorias.each do |vis| %>
+			<div style="padding-left: 15px;" id="vist_<%=vis.id%>"><a onclick="$('#vis_<%=vis.id%>').toggle();"><i class="icon-chevron-right"></i><%= vis.name%></a>
+			<% inspections = Inspection.joins(:equipment).where(approved: 0).where(group_id: vis.id).order("equipment.name")%>
+			- <%=vis.vist_date %> (<%= inspections.size%> inspeção(ões))</div>
+			<div id="vis_<%=vis.id%>" style="display:none;">
+			<% inspections.each do |insp| %>
+				<div style="padding-left: 35px;" id="insp_<%=insp.id%>"><i class="icon-file"></i><%= insp.equipment.equip_type.kind %> - <%= insp.equipment.name %> (<%= insp.description%>). Por <%= insp.user.name%>. 
+				<%= link_to "[Visualizar]", insp  %> 
+				<% if (insp.equipment.is_there)  %>
+                    <%= link_to "[Editar Checklist]", edit_inspection_path(:id => insp.id) %>
+                <% end %>
+                </div>
+			<% end %>
+			</div>
+		<% end %>
+		</div>
+	<% end %>
+	<br/>
+</div>

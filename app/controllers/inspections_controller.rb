@@ -122,7 +122,7 @@ end
 	def index
 		@equip_types = EquipType.order("kind").all
 		@users = User.order("name").where(kind: "estag")
-		@groups = Group.all
+		@groups = Group.all.order("name")
 		@buildings = Building.order("name").all
 
 		@inspections = Inspection.where(approved: 0).order("created_at DESC")

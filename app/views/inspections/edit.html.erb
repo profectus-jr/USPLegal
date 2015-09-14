@@ -5,6 +5,25 @@
     max-height:     150px;
 }
 </style>
+
+<script language="javascript">
+  var needToConfirm = true;
+  window.onbeforeunload = confirmExit;
+  function confirmExit()
+  {
+    if (needToConfirm) {
+    	return "Você deseja mesmo sair desta página?";
+    }
+  }
+  function submitConfirm()
+  {
+  	needToConfirm = false; 
+  	save = confirm('Deseja Salvar?');
+  	if (!save) needToConfirm = true;
+  	return save;
+  }
+</script>
+
 <h1>Checklist</h1>
 <hr>
 
@@ -12,52 +31,54 @@
 
 <%= f.label :group_id, "Grupo Da Inspeção"%>
 <%= f.collection_select :group_id, Group.all, :id, :name %>
+<% prev_id = nil%>
 <hr>
 <% @questions.each do |id, question, q| %>
-  <% question_id = id %>
-  <%= label_tag question, question %>  
-  <%= select('answers', id, @answertypes, :selected => @answer_data.where(checklist_item_id: id).first.try(:is_ok)) %>
+  	<div id="checklist_item_<%= id%>" style="display:none;">
+  		<% question_id = id %>
+  		<%= label_tag question, question %>  
+  		<%= select('answers', id, @answertypes, :selected => @answer_data.where(checklist_item_id: id).first.try(:is_ok)) %>
+	
+	  <%= label_tag "foto" ,"Escolha uma ou mais fotos para esta pergunta" %>
+	  <%= file_field :photos, id, :multiple => true %>
 
-  <%= label_tag "foto" ,"Escolha uma ou mais fotos para esta pergunta" %>
-  <%= file_field :photos, id, :multiple => true %>
-
-  <%= label_tag "foto_r", "Fotos Atuais"%>
-  <% answer_first = @answer_data.where(checklist_item_id: question_id).first %>
+	  <%= label_tag "foto_r", "Fotos Atuais"%>
+	  <% answer_first = @answer_data.where(checklist_item_id: question_id).first %>
   
-  <% uploads = Upload.where(answer_id: answer_first.try(:id)) %>
-  <% if uploads.size < 1 %>
-	Não existem fotos para esta pergunta.
-  <% else %>
-        Existem <%= uploads.size %> fotos para esta pergunta.
-  <% end %>
-  <% for i in 0..(uploads.size-1) %>
-	<% up_id = uploads[i].id %>
-	<% up_url = uploads[i].photo.url %>
-        <% table_id = "table_" + up_id.to_s %>
-	<table id='<%= table_id %>'>
-	<tr>
-	<td>
-	<div class="img-container" >
-		<a class="fancybox" rel="group-<%= id%>" href="<%= up_url %>">
-			<img class="image-details borderedtable" src="<%= up_url %>" />
-		</a>		
+	  <% uploads = Upload.where(answer_id: answer_first.try(:id)) %>
+	  <% if uploads.size < 1 %>
+		Nenhuma foto foi carregada para esta pergunta.
+	  <% else %>
+	    Foram/Foi carregada(s) <%= uploads.size %> foto(s) para esta pergunta.
+	  <% end %>
+	  <% for i in 0..(uploads.size-1) %>
+		<% up_id = uploads[i].id %>
+		<% up_url = uploads[i].photo.url %>
+	        <% table_id = "table_" + up_id.to_s %>
+		<table id='<%= table_id %>'>
+		<tr>
+			<td>
+				<div>
+					<a class="fancybox" rel="group-<%= id%>" href="<%= up_url %>">
+						<img class="img-container borderedtable" src="<%= up_url %>" />
+					</a>		
+				</div>
+			</td>
+			<td>
+				<a href='javascript:void(0);' onclick='remove_upload_ajax(<%= up_id %>);'>Remover</a>
+			</td>
+		</tr>
+		</table>
+  	<% end %>
+  
+  	<%= label_tag "comment", "Comentário" %>
+  	<%= text_area_tag "comment_" + id.to_s, @answer_data.where(checklist_item_id: id).first.try(:comment) %>
+
 	</div>
-	</td>
-	<td>
-		<a href='javascript:void(0);' onclick='remove_upload_ajax(<%= up_id %>);'>Remover</a>
-	</td>
-	</tr>
-	</table>
-  <% end %>
-  
-  <%= label_tag "comment", "Comentário" %>
-  <%= text_area_tag "comment_" + id.to_s, @answer_data.where(checklist_item_id: id).first.try(:comment) %>
-
-<hr>
 
 <% end %>
 <br/>
-<%= f.submit "Salvar", :class => "btn default-button"%>
+<%= f.submit "Salvar", :class => "btn default-button", :onclick => "return submitConfirm();"%>
 
 <% end %>
 

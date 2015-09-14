@@ -2,6 +2,7 @@
 	<div class="navbar navbar-default main-nav " role="navigation">
   		<div class="navbar-inner mainnav">
     		<div class="container-fluid">
+    			<div style="float:left; padding-top:28px;"><i class="icon-check icon-4x"></i><x style="padding-left: 36px; padding-top:4px;"><font size=5>Check Acessibilidade</font></x></div>
       			<%= image_tag "header_logo1.png", style: "float:right; padding-top: 10px;" %>
     		</div>
   		</div>
@@ -18,14 +19,21 @@
 			</li>
 		</ul>
 		<ul class="nav" style="float:right;">
-			<% if current_user.kind == "admin"%>
+			<% if current_user.kind == "admin" %>
 			 	<li>
-					<%= link_to "Configurações", configuration_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
+					<%= link_to "Painel De Controle", configuration_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
 				</li>
-			<%end%>
-			<li>
-				<%= link_to "Meus Dados", user_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
-			</li>
+			<% end %>
+			
+			<% if current_user.kind == "admin" %>
+				<li>
+					<%= link_to "Todas As Contas", user_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
+				</li>
+			<% else %>
+				<li>
+					<%= link_to "Minha Conta", user_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
+				</li>
+			<% end %>
 			<li class="divider-vertical" style="height:30px;"></li>
 			<li>
 				<%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "brand", style: "padding:5px 15px;margin:auto;" %>
