@@ -35,7 +35,7 @@ class InspectionsController < ApplicationController
 
   def new
     @inspection = Inspection.new
-    @equipments = Equipment.all.collect{|p| [p.name,p.id]}
+    @equipments = Equipment.all.order(:name).collect{|p| [p.name,p.id]}
     @equipment = 0
   end
 
