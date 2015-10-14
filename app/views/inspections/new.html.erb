@@ -10,7 +10,7 @@
   <%= f.select(:equipment_id, options_for_select(@equipments, @equipment)) %>
 
   <%= f.label :group_id, "Vistorias"%>
-  <%= f.collection_select :group_id, Group.all, :id, :name %>
+  <%= f.collection_select :group_id, Group.all.order(:name), :id, :name %>
 
   <%= f.label :photo_url, "Escolha uma foto geral para a inspeção (se aplicável)" %>
   <%= f.file_field :photo_url %>
