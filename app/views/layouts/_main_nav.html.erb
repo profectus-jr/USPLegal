@@ -19,21 +19,10 @@
 			</li>
 		</ul>
 		<ul class="nav" style="float:right;">
-			<% if current_user.kind == "admin" %>
-			 	<li>
-					<%= link_to "Painel De Controle", configuration_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
-				</li>
-			<% end %>
+		 	<li>
+				<%= link_to "Painel De Controle", configuration_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
+			</li>
 			
-			<% if current_user.kind == "admin" %>
-				<li>
-					<%= link_to "Todas As Contas", user_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
-				</li>
-			<% else %>
-				<li>
-					<%= link_to "Minha Conta", user_index_path, class: "brand", style: "padding:5px 15px;margin:auto;"%>
-				</li>
-			<% end %>
 			<li class="divider-vertical" style="height:30px;"></li>
 			<li>
 				<%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "brand", style: "padding:5px 15px;margin:auto;" %>

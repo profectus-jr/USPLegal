@@ -1,6 +1,24 @@
 <h3>Painel de Controle</h3>
 <hr/>
-<h4>Relatórios</h4>
-<i><%= link_to "[Ordem das Checklists]", report_config_path %></i>
-<br/><br/>
+<h4>Relatório</h4>
+<ul>
+<li><%= link_to "Ordem das Checklists", report_config_path %></li>
+</ul>
+<hr/>
+<h4>Usuário</h4>
+<ul>
+<% if current_user.kind == "admin" %>
+	<li><%= link_to "Lista de Usuários", user_index_path %></li>
+<% end %>
+<li><%= link_to "Ver Minha Conta", user_path(current_user.id) %></li>
+<li><%= link_to "Editar Meus Dados", edit_user_path(current_user.id) %></li>
+
+</ul>
+<hr/>
+<h4>Dados do Check Acessibilidade</h4>
+<ul>
+<li>Versão: 0.8.500</li>
+<li>Build: 16.11.2015</li>
+<li>Codename: Hera</li>
+</ul>
 <div class="push-navx">

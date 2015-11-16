@@ -56,7 +56,7 @@ class InspectionsController < ApplicationController
   def edit
     @inspection = Inspection.find(params[:id])
     @questions = @inspection.equipment.equip_type.checklist_items.collect{|p| [p.id, p.question] }
-    @answertypes = [["Sim",0],["Nao",1], ["Nao se Aplica",2]]
+    @answertypes = [["Sim",0],["Nao",1], ["Nao se Aplica",2],["Não Respondido",999]]
     @answer_data = Answer.where(inspection_id: params[:id])
     @answer_test = @answer_data.where(checklist_item_id: 29)
     
@@ -119,7 +119,23 @@ def update
    	redirect_to inspection_path id: inspection.id
 end
 
-	def index
+def removephoto
+	if (params[:idphoto].nil?)
+		raise ActionController::RoutingError.new('Invalid ID!')
+	end;
+	if (current_user.kind == "admin")
+		photo_to_remove = Upload.find(params[:idphoto])
+		if (photo_to_remove.nil?)
+			raise ActionController::RoutingError.new('Invalid ID!')
+		end
+		photo_to_remove.delete
+		photo_to_remove.save
+	else
+		raise ActionController::RoutingError.new('Unauthorized!')
+	end
+end
+
+def index
 		@equip_types = EquipType.order("kind").all
 		@users = User.order("name").where(kind: "estag")
 		@groups = Group.all.order("name")

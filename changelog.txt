@@ -1,0 +1,6 @@
+Build: 16.11.2015
+- Remoção de imagens nas Checklists (remoção so pode ser feita por admins no momento)
+- Novo layout no painel de controle
+- Painel de Controle mostra informação de versão, build e codename
+- Acesso a Conta de Usuário movido para o novo Painel de Controle
+- Painel de Controle acessível a todos os usuários, com opções limitadas a cada tipo de usuário.

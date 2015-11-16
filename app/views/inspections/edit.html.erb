@@ -30,7 +30,7 @@
 <%= form_for @inspection, :html => {:multipart => :true } do |f| %>
 
 <%= f.label :group_id, "Grupo Da Inspeção"%>
-<%= f.collection_select :group_id, Group.all, :id, :name %>
+<%= f.collection_select :group_id, Group.all.order(:name), :id, :name %>
 <% prev_id = nil%>
 <% quests = @questions %>
 <% num_quest = 1 %>
@@ -102,9 +102,20 @@ function remove_upload_ajax(idupload)
 	if (!ask) return;
 
 	//ajax
+	$.ajax({
+        url: '<%= inspections_removephoto_path %>',
+        data: { idphoto: idupload} ,
+        success: function (response) {
+            $a = $("#table_" + idupload);
+			$a.remove();
+			alert( "Remoção Bem Sucedida!" );
+        },
+        error: function () {
+            alert( "Erro na Remoção da Imagem!" );
+        }
+    });
 
 	//tablehide
-	$a = $("#table_" + idupload);
-	$a.remove();
+
 }
 </script>

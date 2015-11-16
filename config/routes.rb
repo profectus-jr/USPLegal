@@ -44,6 +44,9 @@ Hera::Application.routes.draw do
   post "inspections/validate"
   get "inspections/disapprove"
   post "inspections/disapprove"
+  
+  get "inspections/removephoto" => "inspections#removephoto"
+  
   resources :inspections
 
   resources :groups
