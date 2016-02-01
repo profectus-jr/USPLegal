@@ -62,7 +62,9 @@ Hera::Application.routes.draw do
 
   resources :equip_types
 
-  get "gerenciamento/index"
+  get "home" => "home#index"
+  
+  get "tutorial/passoapasso" => "tutorial#passoapasso"
   
   get "configuration/index"
 
@@ -70,7 +72,7 @@ Hera::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'gerenciamento#index'
+  root 'welcome#welcome'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

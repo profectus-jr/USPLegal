@@ -5,12 +5,16 @@
 	<%= label_tag(:lcr, "Ordem das Checklists no Relatório") %>
 	<br/>	
 	<%= select_tag "types", options_from_collection_for_select(@equiptypes, "id", "kind") %>
-	<%= link_to "Adicionar", "javascript:void(0);", onclick: "add_entry();"%>
+	<%= link_to "[Adicionar]", "javascript:void(0);", onclick: "add_entry();"%>
 	<br/>
-	<%= select_tag "order", options_for_select(@previous_config), multiple: true %>
+	<%= select_tag "order", options_for_select(@previous_config), multiple: true, style: "height:200px;" %>
+	<%= link_to "[Remover Selecionado]", "javascript:void(0);", onclick: "remove_entry();"%>
+	<%= link_to "[Mover Para Cima]", "javascript:void(0);", onclick: "up();"%>
+	<%= link_to "[Mover Para Baixo]", "javascript:void(0);", onclick: "down();"%>
 	<br/>
-	<%= link_to "Limpar Lista", "javascript:void(0);", onclick: "clear_list();"%>
+	<%= link_to "[Limpar Lista]", "javascript:void(0);", onclick: "clear_list();"%>
 	<hr/>
+	*Lembre sempre de Salvar qualquer alteração feita na ordem.<br/>
 	<button type='button' onclick='prepareAndSubmit()' >Salvar</button>
 <% end %>
 
@@ -19,6 +23,25 @@ function add_entry()
 {
 	var $options = $("#types > option:selected").clone();
 	$('#order').append($options);
+}
+
+function remove_entry()
+{
+	$("#order > option:selected").remove();
+}
+
+function up() {
+    var selected = $("#order").find(":selected");
+    var before = selected.prev();
+    if (before.length > 0)
+        selected.detach().insertBefore(before);
+}
+
+function down() {
+    var selected = $("#order").find(":selected");
+    var next = selected.next();
+    if (next.length > 0)
+        selected.detach().insertAfter(next);
 }
 
 function clear_list() 

@@ -27,16 +27,11 @@
   <!-- p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p-->
 
+	<!-- header -->	
+	<%= render "layouts/header" %>
 	<!-- navigation -->
-
-	<xyz class="header-navx" style="position: fixed; top: 0px; left:0px; width: 100%">
-		<%= render "layouts/header" %>	
-		<%= render "layouts/main_nav" %>
-	</xyz>
-
 	<!-- page -->
 	
-	<div class="push2-navx"></div>
 	<xyz class="wrapper">
 		<%= yield %>
 	</xyz>

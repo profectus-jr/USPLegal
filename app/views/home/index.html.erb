@@ -1,0 +1,10 @@
+<h2>Bem vindo ao Check Acessibilidade, <%= current_user.name%>!</h2>
+<hr/>
+<h4>Notificações</h4>
+<ul>
+<li>Existe(m) <%= (Inspection.where(approved: 0)).size %> Inspeções pendentes!</li>
+</ul>
+<h4>Tutoriais</h4>
+<ul>
+<li><%= link_to "Passo A Passo (Tutorial Inicial)", tutorial_passoapasso_path %></li>
+</ul>
